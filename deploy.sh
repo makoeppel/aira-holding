@@ -10,7 +10,6 @@ npm run build
 # echo 'www.example.com' > CNAME
 
 git add dist -f
-git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
