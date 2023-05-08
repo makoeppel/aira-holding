@@ -4,12 +4,11 @@
 	 viewBox="0 0 720 360" style="enable-background:new 0 0 720 360;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
-	.st1{fill:#181818;}
 </style>
 <g id="Logo_rechteckig">
 	<g>
 		<g>
-			<path class="st1" d="M636.4,301.1H83.6c-0.3,0-0.5-0.2-0.5-0.5v-241c0-0.3,0.2-0.5,0.5-0.5h552.7c0.3,0,0.5,0.2,0.5,0.5v241
+			<path d="M636.4,301.1H83.6c-0.3,0-0.5-0.2-0.5-0.5v-241c0-0.3,0.2-0.5,0.5-0.5h552.7c0.3,0,0.5,0.2,0.5,0.5v241
 				C636.9,300.8,636.6,301.1,636.4,301.1z"/>
 			<g>
 				<rect x="287.5" y="120.4" class="st0" width="31.3" height="119.9"/>
