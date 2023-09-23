@@ -41,6 +41,7 @@
 	import { computed, ref, onMounted, watch } from 'vue';
 	import { useTheme } from 'vuetify';
 	import { useI18n } from 'vue-i18n';
+	import { type Settings, useMainStorage } from '@/store/main';
 
 	const main = useMainStorage()
 
@@ -78,30 +79,4 @@
 		i18n.locale.value = settings.value.local;
 	})
 
-</script>
-<script lang="ts">
-	import { defineStore } from 'pinia'
-	import { useStorage } from '@vueuse/core'
-
-	export interface Settings {
-		dark: boolean,
-		local: string
-	}
-
-	export const useMainStorage = defineStore({
-		id: 'main',
-		state: () => ({
-			settings: useStorage('settings', {} as Settings),
-		}),
-		getters: {
-			getSettings(): Settings {
-				return this.settings
-			}
-		},
-		actions: {
-			changeSettings(oSettings: Settings): void {
-				this.settings = oSettings;
-			}
-		}
-	})
 </script>
