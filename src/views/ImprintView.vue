@@ -6,11 +6,11 @@
 			min-height="100vh">
 			<v-row class="height-screen">
 				<v-col cols="12">
-					<h1>Impressum</h1>
+					<h1>{{ $t("imprint.title") }}</h1>
 				</v-col>
 				<v-col cols="12">
 					<v-row justify="center">
-						<h2>Angaben gemäß § 5 TMG</h2>
+						<h2>{{ $t("imprint.address.title") }}</h2>
 					</v-row>
 					<v-row>
 						<v-col cols="12">
@@ -26,20 +26,20 @@
 				</v-col>
 				<v-col cols="12">
 					<v-row justify="center">
-						<h2>Vertreten durch</h2>
+						<h2>{{ $t("imprint.representedBy.title") }}</h2>
 					</v-row>
 					<v-row>
 						<v-col cols="12">
-							<p>Marius Köppel (Geschäftsführer)</p>
+							<p>{{ $t("imprint.representedBy.marius") }}</p>
 						</v-col>
 						<v-col cols="12">
-							<p>Tobias Schweitzer (Geschäftsführer)</p>
+							<p>{{ $t("imprint.representedBy.tobias") }}</p>
 						</v-col>
 					</v-row>
 				</v-col>
 				<v-col cols="12">
 					<v-row justify="center">
-						<h2>Kontakt</h2>
+						<h2>{{ $t("imprint.contact.title") }}</h2>
 					</v-row>
 					<v-row>
 						<v-col cols="12">
