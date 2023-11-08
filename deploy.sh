@@ -7,7 +7,7 @@ npm run build
 # echo 'www.example.com' > CNAME
 
 cd dist
-git init
+git init --initial-branch=main
 git add . -f
 git commit -m 'deploy'
 
