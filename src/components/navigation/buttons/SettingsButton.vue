@@ -49,7 +49,7 @@
 
 	const settings = ref<Settings>(main.getSettings)
 
-    onMounted(() => {
+	onMounted(() => {
 		let oSettings = main.getSettings
 		if (oSettings) {
 			settings.value = main.getSettings;
@@ -57,11 +57,11 @@
 			settings.value.dark = theme.current.value.dark;
 		}
 		theme.global.name.value = settings.value.dark ? 'dark' : 'light';
-    })
+	})
 
 	const themeName = computed(() => {
-        return settings.value.dark ? "Dark" : "Light";
-    })
+		return settings.value.dark ? "Dark" : "Light";
+	})
 
 	watch(() => settings.value.dark, () => {
 		main.changeSettings(settings.value);

@@ -11,7 +11,7 @@ router.beforeEach((to) => {
 
 export function registerPlugins (app: App) {
 	app
-        .use(i18n)
+		.use(i18n)
 		.use(vuetify)
 		.use(router)
 		.use(pinia)

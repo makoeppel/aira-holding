@@ -21,5 +21,4 @@
 	const filteredNavigationTargets = navigationTargets.filter((oNavigationTarget) => {
 		return oNavigationTarget.usage.includes("bottom");
 	})
-
 </script>

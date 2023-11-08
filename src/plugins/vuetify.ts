@@ -7,7 +7,7 @@ const vuetify = createVuetify({
 	components: {
 		VApp, VMain, VContainer, VRow, VCol
 	},
-    locale: {
+	locale: {
 		adapter: i18nAdapter,
 	}
 })
