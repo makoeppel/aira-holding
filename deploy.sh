@@ -1,7 +1,15 @@
 #!/usr/bin/env sh
 
 # build
+# use gh-pages vite.config
+mv vite.config.ts vite.config.local.ts
+mv vite.config.gh-pages.ts vite.config.ts
+
 npm run build
+
+# use local vite.config again
+mv vite.config.ts vite.config.gh-pages.ts
+mv vite.config.local.ts vite.config.ts
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
