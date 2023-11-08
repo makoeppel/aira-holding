@@ -10,5 +10,9 @@ export default {
 		dataSecurity: "Datenschutz",
 		settings: "Einstellungen",
 		navigateToHome: "Zurück zur Startseite"
+	},
+	pageTitles: {
+		home: "AIRA Holding GmbH",
+		impressum: "Impressum"
 	}
 };
