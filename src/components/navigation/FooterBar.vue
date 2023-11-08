@@ -17,6 +17,15 @@
                     </v-btn>
                     <settings-button class="text-none"></settings-button>
                 </v-col>
+			</v-row>
+			<v-row justify="center">
+				<v-col cols="3">
+					<v-btn
+						icon="mdi-linkedin"
+						href="https://www.linkedin.com/company/aira-holding-gmbh/"></v-btn>
+				</v-col>
+			</v-row>
+			<v-row>
                 <v-col class="text-center" cols="12">
                     {{ new Date().getFullYear() }} — <strong>AIRA Holding GmbH</strong>
                 </v-col>

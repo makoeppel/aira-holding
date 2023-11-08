@@ -13,14 +13,14 @@
 				<RouterView />
 			</v-container>
 		</v-main>
-		<BottomBar></BottomBar>
+		<BottomBar v-if="false"></BottomBar>
 		<FooterBar></FooterBar>
 	</v-app>
 </template>
 
 <script lang="ts">
 	import { useMediaQuery } from '@vueuse/core'
-	
+
 	export const isSmallScreen = useMediaQuery("(max-width: 959px)");
 
 	export const isMediumScreen = useMediaQuery("(max-width: 1279px)");
