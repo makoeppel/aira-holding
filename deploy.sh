@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-
+set -e
 # build
 # use gh-pages vite.config
 mv vite.config.ts vite.config.local.ts
@@ -16,8 +16,8 @@ mv vite.config.local.ts vite.config.ts
 
 cd dist
 git init --initial-branch=main
-git add . -f
-git commit -m 'deploy'
+git add -A -f
+git commit -m 'deploy pages'
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
