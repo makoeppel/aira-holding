@@ -72,9 +72,9 @@
 		},
 		*/
 		{
-			text: "buttons.impressum",
-			key: "impressum",
-			to: { name: "impressum" },
+			text: "buttons.imprint",
+			key: "imprint",
+			to: { name: "imprint" },
 			icon: "",
 			usage: ["footer"],
 			variant: "text"
