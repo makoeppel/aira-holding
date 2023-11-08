@@ -51,12 +51,11 @@
 
 	onMounted(() => {
 		const oSettings = main.getSettings
-		if (oSettings) {
+		if (oSettings && oSettings.dark !== undefined) {
 			settings.value = oSettings;
 		} else {
-			settings.value.dark = theme.current.value.dark;
+			settings.value.dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 		}
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) settings.value.dark = true;
 		main.changeSettings(settings.value);
 		theme.global.name.value = settings.value.dark ? 'dark' : 'light';
 	})
