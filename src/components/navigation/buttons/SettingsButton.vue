@@ -50,12 +50,14 @@
 	const settings = ref<Settings>(main.getSettings)
 
 	onMounted(() => {
-		let oSettings = main.getSettings
+		const oSettings = main.getSettings
 		if (oSettings) {
-			settings.value = main.getSettings;
+			settings.value = oSettings;
 		} else {
 			settings.value.dark = theme.current.value.dark;
 		}
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) settings.value.dark = true;
+		main.changeSettings(settings.value);
 		theme.global.name.value = settings.value.dark ? 'dark' : 'light';
 	})
 
