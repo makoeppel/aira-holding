@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 	import IconComponent from '@/assets/logo.svg?component';
+	import IconComponentDark from '@/assets/logo_dark.svg?component';
 	import { VAvatar, VImg, VBtn, VDivider } from "vuetify/lib/components/index.mjs";
+	import { useTheme } from 'vuetify';
+
+	const theme = useTheme()
 
 	type SocialMedia = {
 		icon: string;
@@ -62,7 +66,8 @@
 	<v-container>
 		<v-row class="text-center">
 			<v-col cols="12">
-				<IconComponent height="100px"></IconComponent>
+				<IconComponentDark v-if="theme.current.value.dark" height="100px"></IconComponentDark>
+				<IconComponent v-else height="100px"></IconComponent>
 			</v-col>
 		</v-row>
 		<v-row>

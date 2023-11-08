@@ -6,7 +6,12 @@
 		:active="false"
 		size="x-large"
 		:aria-label="$t('buttons.navigateToHome')">
-		<icon-component></icon-component>
+		<v-icon v-if="theme.current.value.dark">
+			<IconComponentDark></IconComponentDark>
+		</v-icon>
+		<v-icon v-else>
+			<IconComponent ></IconComponent>
+		</v-icon>
 	</v-btn>
 	<v-btn v-else
 		:to="{ name: 'home'}"
@@ -15,14 +20,6 @@
 		:active="false"
 		size="x-large"
 		:aria-label="$t('buttons.navigateToHome')">
-		<template v-slot:prepend>
-			<v-icon v-if="theme.current.value.dark">
-				<icon-component-dark></icon-component-dark>
-			</v-icon>
-			<v-icon v-else>
-				<IconComponent ></IconComponent>
-			</v-icon>
-		</template>
 		<span>
 			AIRA Holding GmbH
 		</span>
@@ -32,7 +29,7 @@
 	import { VBtn, VIcon } from 'vuetify/lib/components/index.mjs';
 	import { isSmallScreen } from '@/App.vue';
 	import IconComponent from '@/assets/logo.svg?component'
-	//import IconComponentDark from '@/assets/IconLogo_dark.svg?component'
+	import IconComponentDark from '@/assets/logo_dark.svg?component'
 	import { useTheme } from 'vuetify';
 
 	const theme = useTheme()
