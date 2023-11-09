@@ -42,8 +42,8 @@
 							<v-btn
 								prepend-icon="mdi-phone"
 								variant="text"
-								href="tel:+4917678654606">
-								+49 (0) 176 78 654 606
+								href="tel:+4961315537373">
+								+49 (0) 6131 55 373 73
 							</v-btn>
 							<v-btn
 								class="text-none"
