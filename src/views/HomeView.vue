@@ -25,7 +25,8 @@
 	<v-container class="py-0" fluid>
 		<v-lazy
 			:options="{'threshold':0.5}"
-			transition="scroll-x-transition">
+			transition="scroll-x-transition"
+			min-height="100vh">
 			<v-row align="center" class="height-screen">
 				<v-col cols="12">
 					<v-row class="text-center">
@@ -47,8 +48,9 @@
 			</v-row>
 		</v-lazy>
 		<v-lazy
-			:options="{'threshold':0.5}"
-			transition="scroll-x-transition">
+			:options="{'threshold':0.7}"
+			transition="scroll-x-transition"
+			min-height="50vh">
 			<v-row class="height-screen">
 				<v-col>
 					<h2>{{ $t("home.team.title") }}</h2>
