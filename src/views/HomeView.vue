@@ -1,24 +1,14 @@
 <script lang="ts" setup>
 	import IconComponent from '@/assets/logo.svg?component';
 	import IconComponentDark from '@/assets/logo_dark.svg?component';
-	import { VAvatar, VImg, VBtn, VDivider } from "vuetify/lib/components/index.mjs";
+	import { VDivider } from "vuetify/lib/components/index.mjs";
 	import { useTheme } from 'vuetify';
+	import type { TeamMember as TeamMemberType } from '@/components/TeamMember.vue';
+	import TeamMember from '@/components/TeamMember.vue';
 
 	const theme = useTheme()
 
-	type SocialMedia = {
-		icon: string;
-		href: string;
-	}
-
-	type Member = {
-		name: string;
-		imgSrc: string;
-		socials?: SocialMedia[],
-		paragraph: string
-	}
-
-	const teamMembers:Member[] = [
+	const teamMembers:TeamMemberType[] = [
 		{
 			name: "Marius Köppel",
 			imgSrc: "/profiles/marius.png",
@@ -104,30 +94,8 @@
 			</v-col>
 			<v-col cols="12">
 				<v-row justify="center">
-					<v-col v-for="(member, index) in teamMembers" :key="index" class="text-center">
-						<v-container fluid>
-							<v-row>
-								<v-col>
-									<v-avatar size="x-large">
-										<v-img
-											:src="member.imgSrc"
-											:alt="`Profile picture of ${member.name}`"></v-img>
-									</v-avatar>
-								</v-col>
-							</v-row>
-							<v-row>
-								<v-col>{{ member.name }}</v-col>
-							</v-row>
-							<v-row v-if="member.socials" justify="center">
-								<v-col v-for="(social, socialIndex) in member.socials" :key="`${index}-${socialIndex}`" cols="3">
-									<v-btn
-										variant="plain"
-										:icon="social.icon"
-										:href="social.href"></v-btn>
-								</v-col>
-							</v-row>
-							<p class="text-left">{{ $t(member.paragraph) }}</p>
-						</v-container>
+					<v-col v-for="(member, index) in teamMembers" :key="index" class="text-center" md="4" cols="12">
+						<TeamMember v-bind="member"></TeamMember>
 					</v-col>
 				</v-row>
 			</v-col>
