@@ -3,7 +3,6 @@
 		<v-lazy
 			class="height-screen"
 			:options="{'threshold':0.5}"
-			transition="scroll-x-transition"
 			min-height="100vh">
 			<v-row class="height-screen">
 				<v-col cols="12">
@@ -80,8 +79,7 @@
 		</v-lazy>
 		<v-lazy
 			min-height="50vh"
-			:options="{'threshold':0.5}"
-			transition="scroll-x-transition">
+			:options="{'threshold':0.5}">
 			<v-row class="height-screen">
 				<v-col cols="12">
 					<h2>Haftungsausschluss</h2>

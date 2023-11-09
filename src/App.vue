@@ -39,7 +39,6 @@
 		</v-main>
 		<v-lazy
 			:options="{'threshold':0.5}"
-			transition="scroll-x-transition"
 			min-height="60px">
 			<BottomBarComponent v-if="false"></BottomBarComponent>
 			<FooterBarComponent></FooterBarComponent>

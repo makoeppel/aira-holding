@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import { defineAsyncComponent } from 'vue';
 	import { TeamMembers, type TeamMemberType } from '@/components/home/TeamMember.vue';
-	import { VLazy } from 'vuetify/lib/components/index.mjs';
+	import { VLazy, VDivider } from 'vuetify/lib/components/index.mjs';
 	import { CompanyPurposes, type CompanyPurposeType } from '@/components/home/CompanyPurpose.vue';
 
 	const HeaderLogoComponent = defineAsyncComponent({
@@ -25,7 +25,6 @@
 	<v-container class="py-0" fluid>
 		<v-lazy
 			:options="{'threshold':0.5}"
-			transition="scroll-x-transition"
 			min-height="100vh">
 			<v-row align="center" class="height-screen">
 				<v-col cols="12">
@@ -47,9 +46,13 @@
 				</v-col>
 			</v-row>
 		</v-lazy>
+		<v-lazy>
+			<v-row class="py-5">
+				<v-divider></v-divider>
+			</v-row>
+		</v-lazy>
 		<v-lazy
-			:options="{'threshold':0.7}"
-			transition="scroll-x-transition"
+			:options="{'threshold':0.3}"
 			min-height="50vh">
 			<v-row class="height-screen">
 				<v-col>
@@ -59,9 +62,8 @@
 					<v-row justify="center">
 						<v-col v-for="(member, index) in teamMembers" :key="index" class="text-center" md="4" cols="12">
 							<v-lazy
-								:options="{'threshold':0.7}"
-								min-height="250px"
-								transition="scroll-x-transition">
+								:options="{'threshold':0.33}"
+								min-height="50vh">
 								<TeamMemberComponent v-bind="member"></TeamMemberComponent>
 							</v-lazy>
 						</v-col>
