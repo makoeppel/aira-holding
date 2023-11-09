@@ -19,9 +19,9 @@
 		variant="text"
 		:active="false"
 		size="x-large"
-		:aria-label="$t('buttons.navigateToHome')">
+		:aria-label="$t('buttons.home.text')">
 		<span>
-			AIRA Holding GmbH
+			{{ $t('buttons.home.text') }}
 		</span>
 	</v-btn>
 </template>

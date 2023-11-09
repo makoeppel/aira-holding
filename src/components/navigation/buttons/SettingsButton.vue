@@ -38,7 +38,7 @@
 </template>
 <script setup lang="ts">
 	import { VBtn, VMenu, VList, VListItem, VSwitch } from 'vuetify/lib/components/index.mjs';
-	import { computed, ref, onMounted, watch } from 'vue';
+	import { computed, ref, watch } from 'vue';
 	import { useTheme } from 'vuetify';
 	import { useI18n } from 'vue-i18n';
 	import { type Settings, useMainStorage } from '@/store/main';
@@ -48,17 +48,6 @@
 	const theme = useTheme()
 
 	const settings = ref<Settings>(main.getSettings)
-
-	onMounted(() => {
-		const oSettings = main.getSettings
-		if (oSettings && oSettings.dark !== undefined) {
-			settings.value = oSettings;
-		} else {
-			settings.value.dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-		}
-		main.changeSettings(settings.value);
-		theme.global.name.value = settings.value.dark ? 'dark' : 'light';
-	})
 
 	const themeName = computed(() => {
 		return settings.value.dark ? "Dark" : "Light";

@@ -1,104 +1,71 @@
 <script lang="ts" setup>
-	import IconComponent from '@/assets/logo.svg?component';
-	import IconComponentDark from '@/assets/logo_dark.svg?component';
-	import { VDivider } from "vuetify/lib/components/index.mjs";
-	import { useTheme } from 'vuetify';
-	import type { TeamMember as TeamMemberType } from '@/components/TeamMember.vue';
-	import TeamMember from '@/components/TeamMember.vue';
+	import { defineAsyncComponent } from 'vue';
+	import { TeamMembers, type TeamMemberType } from '@/components/home/TeamMember.vue';
+	import { VLazy } from 'vuetify/lib/components/index.mjs';
+	import { CompanyPurposes, type CompanyPurposeType } from '@/components/home/CompanyPurpose.vue';
 
-	const theme = useTheme()
+	const HeaderLogoComponent = defineAsyncComponent({
+		loader: () => import('@/components/home/HeaderLogo.vue')
+	});
 
-	const teamMembers:TeamMemberType[] = [
-		{
-			name: "Marius Köppel",
-			imgSrc: "/profiles/marius.png",
-			paragraph: "home.team.members.marius",
-			socials: [
-				{
-					icon: "mdi-github",
-					href: "https://github.com/makoeppel"
-				},
-				{
-					icon: "mdi-linkedin",
-					href: "https://www.linkedin.com/in/marius-k%C3%B6ppel-b0a2b915b/"
-				}
-			]
-		},
-		{
-			name: "Tobias Schweitzer",
-			imgSrc: "/profiles/tobias.jpeg",
-			paragraph: "home.team.members.tobias",
-			socials: [
-				{
-					icon: "mdi-linkedin",
-					href: "https://www.linkedin.com/in/tobias-schweitzer-at-aira/"
-				}
-			]
-		},
-		{
-			name: "Marvin Schneider",
-			imgSrc: "/profiles/marvin.png",
-			paragraph: "home.team.members.marvin",
-			socials: [
-				{
-					icon: "mdi-linkedin",
-					href: "https://www.linkedin.com/in/marvin-schneider-a4b6b4131/"
-				}
-			]
-		}
-	];
+	const CompanyPurposeComponent = defineAsyncComponent({
+		loader: () => import('@/components/home/CompanyPurpose.vue')
+	});
+
+	const companyPurposes: CompanyPurposeType[] = CompanyPurposes;
+
+	const TeamMemberComponent = defineAsyncComponent({
+		loader: () => import('@/components/home/TeamMember.vue')
+	});
+
+	const teamMembers:TeamMemberType[] = TeamMembers
 
 </script>
-
 <template>
-	<v-container>
-		<v-row class="text-center">
-			<v-col cols="12">
-				<IconComponentDark v-if="theme.current.value.dark" height="100px"></IconComponentDark>
-				<IconComponent v-else height="100px"></IconComponent>
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col>
-				<h2>{{ $t("home.companyPurpose.title") }}</h2>
-			</v-col>
-			<v-col cols="12">
-				<v-row>
-					<v-col md="4" cols="12">
-						<h3><u>{{ $t("home.companyPurpose.whyWeExist.title") }}</u></h3>
-						<p>
-							{{ $t("home.companyPurpose.whyWeExist.paragraph") }}
-						</p>
-					</v-col>
-					<v-col md="4" cols="12">
-						<h3><u>{{ $t("home.companyPurpose.howWeDoIt.title") }}</u></h3>
-						<p>
-							{{ $t("home.companyPurpose.howWeDoIt.paragraph") }}
-						</p>
-					</v-col>
-					<v-col md="4" cols="12">
-						<h3><u>{{ $t("home.companyPurpose.whatWeDo.title") }}</u></h3>
-						<p>
-							{{ $t("home.companyPurpose.whatWeDo.paragraph") }}
-						</p>
-					</v-col>
-				</v-row>
-			</v-col>
-		</v-row>
-		<v-row class="py-5">
-			<v-divider></v-divider>
-		</v-row>
-		<v-row>
-			<v-col>
-				<h2>{{ $t("home.team.title") }}</h2>
-			</v-col>
-			<v-col cols="12">
-				<v-row justify="center">
-					<v-col v-for="(member, index) in teamMembers" :key="index" class="text-center" md="4" cols="12">
-						<TeamMember v-bind="member"></TeamMember>
-					</v-col>
-				</v-row>
-			</v-col>
-		</v-row>
+	<v-container class="py-0" fluid>
+		<v-lazy
+			:options="{'threshold':0.5}"
+			transition="scroll-x-transition">
+			<v-row align="center" class="height-screen">
+				<v-col cols="12">
+					<v-row class="text-center">
+						<v-col cols="12">
+							<HeaderLogoComponent height="100px"></HeaderLogoComponent>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col>
+							<h2>{{ $t("home.companyPurpose.title") }}</h2>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col v-for="(companyPurpose, index) in companyPurposes" :key="`purpose-${index}`" md="4" cols="12">
+							<CompanyPurposeComponent v-bind="companyPurpose"></CompanyPurposeComponent>
+						</v-col>
+					</v-row>
+				</v-col>
+			</v-row>
+		</v-lazy>
+		<v-lazy
+			:options="{'threshold':0.5}"
+			transition="scroll-x-transition">
+			<v-row class="height-screen">
+				<v-col>
+					<h2>{{ $t("home.team.title") }}</h2>
+				</v-col>
+				<v-col cols="12">
+					<v-row justify="center">
+						<v-col v-for="(member, index) in teamMembers" :key="index" class="text-center" md="4" cols="12">
+							<v-lazy
+								:options="{'threshold':0.7}"
+								min-height="250px"
+								transition="scroll-x-transition">
+								<TeamMemberComponent v-bind="member"></TeamMemberComponent>
+							</v-lazy>
+						</v-col>
+					</v-row>
+				</v-col>
+			</v-row>
+		</v-lazy>
 	</v-container>
 </template>

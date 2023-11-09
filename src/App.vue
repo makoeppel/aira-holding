@@ -1,8 +1,32 @@
 <script lang="ts" setup>
 	import { RouterView } from 'vue-router'
 	import NavigationBar from '@/components/navigation/NavigationBar.vue'
-	import BottomBar from '@/components/navigation/BottomBar.vue'
-	import FooterBar from '@/components/navigation/FooterBar.vue'
+	import { VLazy } from 'vuetify/lib/components/index.mjs'
+	import { onMounted } from 'vue'
+	import { useMainStorage } from '@/store/main'
+	import { useTheme } from 'vuetify/lib/framework.mjs'
+	import { defineAsyncComponent } from 'vue'
+
+	const main = useMainStorage()
+
+	const theme = useTheme()
+
+	onMounted(() => {
+		const oSettings = main.getSettings;
+		if (oSettings && oSettings.dark === undefined) {
+			oSettings.dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			main.changeSettings(oSettings);
+		}
+		theme.global.name.value = oSettings.dark ? 'dark' : 'light';
+	})
+
+	const BottomBarComponent = defineAsyncComponent({
+		loader: () => import('@/components/navigation/BottomBar.vue')
+	});
+
+	const FooterBarComponent = defineAsyncComponent({
+		loader: () => import('@/components/navigation/FooterBar.vue')
+	})
 </script>
 
 <template>
@@ -13,8 +37,13 @@
 				<RouterView />
 			</v-container>
 		</v-main>
-		<BottomBar v-if="false"></BottomBar>
-		<FooterBar></FooterBar>
+		<v-lazy
+			:options="{'threshold':0.5}"
+			transition="scroll-x-transition"
+			min-height="60px">
+			<BottomBarComponent v-if="false"></BottomBarComponent>
+			<FooterBarComponent></FooterBarComponent>
+		</v-lazy>
 	</v-app>
 </template>
 

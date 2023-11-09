@@ -9,7 +9,10 @@ export default {
 		imprint: "Impressum",
 		dataSecurity: "Datenschutz",
 		settings: "Einstellungen",
-		navigateToHome: "Zurück zur Startseite"
+		navigateToHome: "Zurück zur Startseite",
+		home: {
+			text: "AIRA Holding GmbH"
+		}
 	},
 	pageTitles: {
 		home: "AIRA Holding GmbH",
