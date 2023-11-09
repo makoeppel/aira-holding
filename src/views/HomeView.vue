@@ -18,12 +18,10 @@
 		paragraph: string
 	}
 
-	const imagePath = "/src/assets/profiles";
-
 	const teamMembers:Member[] = [
 		{
 			name: "Marius Köppel",
-			imgSrc: `${imagePath}/marius.png`,
+			imgSrc: "/profiles/marius.png",
 			paragraph: "home.team.members.marius",
 			socials: [
 				{
@@ -38,7 +36,7 @@
 		},
 		{
 			name: "Tobias Schweitzer",
-			imgSrc: `${imagePath}/tobias.jpeg`,
+			imgSrc: "/profiles/tobias.jpeg",
 			paragraph: "home.team.members.tobias",
 			socials: [
 				{
@@ -49,7 +47,7 @@
 		},
 		{
 			name: "Marvin Schneider",
-			imgSrc: `${imagePath}/marvin.png`,
+			imgSrc: "/profiles/marvin.png",
 			paragraph: "home.team.members.marvin",
 			socials: [
 				{
