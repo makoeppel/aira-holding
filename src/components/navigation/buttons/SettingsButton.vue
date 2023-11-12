@@ -18,12 +18,11 @@
 						</template>
 					</v-switch>
 				</v-list-item>
-				<!--
 				<v-list-item>
 					<v-switch
 						v-model="settings.local"
-						true-value="en"
-						false-value="de"
+						true-value="en-Us"
+						false-value="de-De"
 						inset
 						:ripple="false">
 						<template v-slot:label>
@@ -31,7 +30,6 @@
 						</template>
 					</v-switch>
 				</v-list-item>
-				-->
 			</v-list>
 		</v-menu>
 	</v-btn>
@@ -59,7 +57,7 @@
 	})
 
 	const languageName = computed(() => {
-		return settings.value.local === "en" ? "English" : "Deutsch";
+		return settings.value.local === "en-Us" ? "English" : "Deutsch";
 	})
 
 	const i18n = useI18n()
