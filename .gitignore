@@ -25,5 +25,5 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-node_modules
+**/node_modules
 ._*
