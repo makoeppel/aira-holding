@@ -29,11 +29,11 @@ export default {
 			howWeDoIt: {
 				title: "How does AIRA work?",
 				paragraph: "As a research organization with expertise in the domain of Artificial Intelligence, we offer our partnership in Research and Development contract work to the private and public sectors.\
-				As a holding company, the commercialisation of our research results is done by establishing new spin-off companies."
+				As a holding company, the commercialisation of our research results is done by establishing new spin-offs."
 			},
 			whatWeDo: {
 				title: "What does AIRA do?",
-				paragraph: "AIRA Holding GmbH is an active shareholder of its spin-off companies and assists them in their continuous development. Through participations, licensing and the sale of shares of our successful companies, we generate capital to invest in the creation of new knowledge."
+				paragraph: "AIRA Holding GmbH is an active shareholder of its spin-off organizations and assists them in their continuous development. Through participations, licensing and the sale of shares of our successful companies, we generate capital to invest in the creation of new knowledge."
 			}
 		},
 		team: {
