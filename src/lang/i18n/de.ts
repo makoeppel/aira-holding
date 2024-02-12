@@ -33,7 +33,7 @@ export default {
 			},
 			whatWeDo: {
 				title: "What does AIRA do?",
-				paragraph: "AIRA Holding GmbH is an active shareholder of its spin-off organizations and assists them in their continuous development. Through participations, licensing and the sale of shares of our successful companies, we generate capital to invest in the creation of new knowledge."
+				paragraph: "AIRA Holding GmbH is an active shareholder of its spin-off organizations and assists them in their continuous development. Through participations, licensing and the sale of shares of our successful organizations, we generate capital to invest in the creation of new knowledge."
 			}
 		},
 		team: {
