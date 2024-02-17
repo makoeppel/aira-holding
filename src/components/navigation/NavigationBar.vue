@@ -79,6 +79,14 @@
 			usage: ["footer"],
 			variant: "text"
 		},
+		{
+			text: "buttons.gep",
+			key: "gep",
+			to: { name: "gep" },
+			icon: "",
+			usage: ["footer"],
+			variant: "text"
+		},
 		/*
 		{
 			text: "buttons.dataSecurity",
