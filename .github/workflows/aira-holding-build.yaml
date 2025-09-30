@@ -1,54 +1,45 @@
-# To better understand this file read this:
-# https://docs.ionos.space/docs/github-actions-customization/
-
-name: "Deploy Now: Execute Build"
+name: Build (Vite/Vue)
 
 on:
-  workflow_call:
-    inputs:
-      site-url:
-        required: true
-        type: string
-      branch-id:
-        required: true
-        type: string
+  push:
+    branches: [ "main" ]
+  pull_request:
 
-env:
-  DEPLOYMENT_FOLDER: dist
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-# Please do not rename this job
-  build-project:
-    name: build aira-holding
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    env:
+      # Vite builds to "dist" by default
+      OUTPUT_DIR: dist
+      # Improve reproducibility in CI
+      CI: "true"
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          node-version: v16.x
+          node-version: "20"
+          cache: "npm"
 
-      - name: Build Node assets
-        env:
-          CI: true
-          SITE_URL: ${{ inputs.site-url }}
-        run: |
-          npm ci
-          npm run build
+      - name: Install dependencies
+        run: npm ci
 
-# Please do not touch the following action
-      - name: Store deployment content
-        uses: ionos-deploy-now/artifact-action@v1
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          api-key: ${{ secrets.IONOS_API_KEY }}
-          service-host: api-eu.ionos.space
-          project-id: 224707ad-55cf-4d7a-bf6d-8afdf07cbaac
-          branch-id: ${{ inputs.branch-id }}
-          version: ${{ github.sha }}
-          folder: ${{ env.DEPLOYMENT_FOLDER }}
-          config-file: .deploy-now/aira-holding/config.yaml
-          action: upload
+          name: site-build
+          path: ${{ env.OUTPUT_DIR }}
+          if-no-files-found: error
