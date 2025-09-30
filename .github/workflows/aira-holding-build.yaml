@@ -42,7 +42,7 @@ jobs:
 
       # Upload to your server (rsync over SSH)
       - name: Deploy via SSH (rsync)
-        uses: easingthemes/ssh-deploy@v5
+        uses: easingthemes/ssh-deploy
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_HOST: aira-holding.de
