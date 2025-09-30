@@ -46,7 +46,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_HOST: aira-holding.de
-          REMOTE_USER: root
+          REMOTE_USER: deploy
           TARGET: /root/aira-holding            # change to your web root
           SOURCE: ${{ env.OUTPUT_DIR }}/
           ARGS: "-rltgoDz --delete"        # atomic-ish sync
