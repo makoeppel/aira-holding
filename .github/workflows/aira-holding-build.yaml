@@ -1,24 +1,21 @@
-name: Build (Vite/Vue)
+name: Build & Deploy (Vite/Vue)
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     env:
-      # Vite builds to "dist" by default
       OUTPUT_DIR: dist
-      # Improve reproducibility in CI
       CI: "true"
 
     steps:
@@ -37,9 +34,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+      # Optional: sanity-check that dist isn't empty
+      - name: List files
+        run: |
+          echo "Built files:"
+          ls -la $OUTPUT_DIR
+
+      # Upload to your server (rsync over SSH)
+      - name: Deploy via SSH (rsync)
+        uses: easingthemes/ssh-deploy@v5
         with:
-          name: site-build
-          path: ${{ env.OUTPUT_DIR }}
-          if-no-files-found: error
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          REMOTE_HOST: aira-holding.de
+          REMOTE_USER: root
+          TARGET: /root/aira-holding            # change to your web root
+          SOURCE: ${{ env.OUTPUT_DIR }}/
+          ARGS: "-rltgoDz --delete"        # atomic-ish sync
