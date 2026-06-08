@@ -87,6 +87,14 @@
 			usage: ["footer"],
 			variant: "text"
 		},
+		{
+			text: "buttons.contact",
+			key: "contact",
+			to: { name: "contact" },
+			icon: "",
+			usage: ["footer"],
+			variant: "text"
+		},
 		/*
 		{
 			text: "buttons.dataSecurity",

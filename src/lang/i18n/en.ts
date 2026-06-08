@@ -3,13 +3,13 @@ export default {
 		whoWeAre: 'Wer wir sind',
 		mission: "Mission",
 		events: "Events",
-		contact: "Kontaktier uns",
+		contact: "Get in touch",
 		becomeMember: "Mitglied werden",
 		support: "Unterstützen",
-		imprint: "Impressum",
+		imprint: "Imprint",
 		gep: "Gender Equality Plan",
 		dataSecurity: "Datenschutz",
-		settings: "Einstellungen",
+		settings: "Settings",
 		navigateToHome: "Zurück zur Startseite",
 		home: {
 			text: "AIRA Holding GmbH"
@@ -17,8 +17,8 @@ export default {
 	},
 	pageTitles: {
 		home: "AIRA Holding GmbH",
-		imprint: "Impressum",
-		contact: "Kontaktier uns",
+		imprint: "Imprint",
+		contact: "Get in touch",
 		gep: "Gender Equality Plan"
 	},
 	home: {
