@@ -1,19 +1,12 @@
 {
-  "extends": "./tsconfig.app.json",
-  "compilerOptions": {
-    "composite": true,
-    "types": ["node", "jsdom"]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "**/*.js",
-    "**/*.vue.js"
-  ]
+	"extends": "./tsconfig.app.json",
+	"exclude": [],
+	"compilerOptions": {
+		"composite": true,
+		"lib": [],
+		"types": ["node", "jsdom"]
+	},
+	"include": [
+		"src/components/home/LogoSlider.vue.js"
+  	],
 }
