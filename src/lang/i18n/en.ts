@@ -64,6 +64,9 @@ export default {
 				title: "BioCharGe",  //  FIXME: hardcoded in Projects.vue at the moment
 				paragraph: "Development of a Sodium Battery using BioChar together with SINTEF and the School of Science and Technology -- Chemistry Division, University of Camerino. The project employs the generation of a dataset and to optimize BioChar using AI to enhance the battery performance."
 			}
+		},
+		partners: {
+			title: "Our Partners"
 		}
 	}
 };

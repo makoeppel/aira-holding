@@ -5,6 +5,10 @@
 	import { CompanyPurposes, type CompanyPurposeType } from '@/components/home/CompanyPurpose.vue';
 	import { Projects, type ProjectType } from '@/components/home/Projects.vue';
 
+	const LogoSliderComponent = defineAsyncComponent({
+		loader: () => import('@/components/home/LogoSlider.vue')
+	});
+
 	const HeaderLogoComponent = defineAsyncComponent({
 		loader: () => import('@/components/home/HeaderLogo.vue')
 	});
@@ -103,5 +107,31 @@
 				</v-col>
 			</v-row>
 		</v-lazy>
+
+		<v-lazy>
+		<v-row class="py-5">
+			<v-divider></v-divider>
+		</v-row>
+		</v-lazy>
+
+		<!-- LOGO SLIDER SECTION -->
+		<v-lazy :options="{ threshold: 0.3 }" min-height="30vh">
+		<v-row class="py-10" justify="center" align="center">
+			<v-col cols="12">
+			<h2 class="text-center mb-6">
+				{{ $t("home.partners.title") }}
+			</h2>
+
+			<LogoSliderComponent />
+			</v-col>
+		</v-row>
+		</v-lazy>
+
+		<v-lazy>
+		<v-row class="py-5">
+			<v-divider></v-divider>
+		</v-row>
+		</v-lazy>
+
 	</v-container>
 </template>
