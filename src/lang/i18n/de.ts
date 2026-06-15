@@ -9,6 +9,7 @@ export default {
 		imprint: "Impressum",
 		gep: "Gender Equality Plan",
 		ixon: "Ixon Import Configuration",
+		kedro: "Kedro Pipeline",
 		dataSecurity: "Datenschutz",
 		settings: "Einstellungen",
 		navigateToHome: "Zurück zur Startseite",
@@ -22,6 +23,7 @@ export default {
 		contact: "Kontaktier uns",
 		gep: "Gender Equality Plan",
 		ixon: "Ixon Import Configuration",
+		kedro: "Kedro Pipeline",
 	},
 	home: {
 		companyPurpose: {

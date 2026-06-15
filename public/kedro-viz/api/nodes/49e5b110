@@ -1,0 +1,160 @@
+{
+  "code": "def get_actions(  # noqa: PLR0915\n    model: Any,\n    X_test: pd.DataFrame,\n    y_test: pd.Series,\n    guess: dict[str, Any],\n    parameters: dict[str, Any],\n    Scaler: Any,\n) -> dict[str, Any]:\n    \"\"\"Calculates the actions which need to be changed to optimize the target.\n\n    Args:\n        model: Trained model.\n        y_test: True target.\n    Returns:\n        actions: dict of key of the variable and value to change to.\n    \"\"\"\n    # get logger for reporting\n    logger = logging.getLogger(__name__)\n\n    # get target optimization name\n    optName = parameters[\"optimization_target\"][0]\n\n    # get names of columns and feature importances\n    importances = model.feature_importances_\n\n    # plot feature importances\n    indices = np.argsort(importances)[::-1]\n    df_importances = pd.DataFrame(\n        {\"feature\": X_test.columns, \"importance\": importances}\n    )\n    df_importances = df_importances.sort_values(by=\"importance\", ascending=False)\n    if parameters[\"plotting\"]:\n        fig = plt.figure(figsize=(10, 12))\n        plt.title(\"Feature Importances\")\n        plt.bar(X_test.columns, importances[indices], color=\"r\", align=\"center\")\n        plt.xlabel(\"Feature Names\")\n        plt.ylabel(\"Importances\")\n        plt.xticks(rotation=90)\n        single_plot_writer = MatplotlibDataset(\n            filepath=f\"output/reporting/{date.today()}/feature_importance.png\"\n        )\n        plt.close()\n        single_plot_writer.save(fig)\n\n    # create constrains\n    # TODO: for the action constrains we have to put them throw the scaling function\n    constrains_actions = []  # this are optimizer parameters (model inputs)\n    constrains_target = []  # this are the model outputs\n    nan_value = -999\n    for sensor_name, max_value, min_value in zip(\n        parameters[\"shutdown_values\"][\"sensor_name\"],\n        parameters[\"shutdown_values\"][\"max\"],\n        parameters[\"shutdown_values\"][\"min\"],\n    ):\n        if sensor_name in parameters[\"actions\"]:\n            action_idx = X_test.columns.to_list().index(sensor_name)\n            if max_value != nan_value:\n                # we use inequality constrains (value <= max) which is non-negative if the condition is met\n                constrains_actions.append(\n                    {\"type\": \"ineq\", \"fun\": lambda x: max_value - x[action_idx]}\n                )\n            if min_value != nan_value:\n                # we use equal constrains meaning that the function needs to be > 0\n                constrains_actions.append(\n                    {\"type\": \"eq\", \"fun\": lambda x: x[action_idx] - min_value}\n                )\n        if sensor_name in parameters[\"target_column\"]:\n            target_idx = y_test.columns.to_list().index(sensor_name)\n            if max_value != nan_value:\n                # we use inequality constrains (value <= max) which is non-negative if the condition is met\n                constrains_target.append(lambda x: max_value - x[0][target_idx])\n            if min_value != nan_value:\n                # we use equal constrains meaning that the function needs to be > 0\n                constrains_target.append(lambda x: x[0][target_idx] - min_value)\n\n    # create optimization function\n    def minimize_target(target_idx, target_guess, x):\n        pred = model.predict(x.reshape(1, -1))\n        # check if the target constrains are fulfilled\n        for con_target in constrains_target:\n            if con_target(pred) < 0:\n                # TODO: for the start we dont really care here\n                return pred[0][target_idx]\n        return pred[0][target_idx]\n\n    # run optimization over best guess\n    target_idx = y_test.columns.to_list().index(optName)\n    minimize_target_f = partial(minimize_target, target_idx, guess[\"target\"])\n    actions = minimize(minimize_target_f, guess[\"values\"], method=\"COBYLA\")\n\n    # logging predicted target for best guess\n    # TODO: get here not only target but the target optimization value. optName build this somehow.\n    target_guess = guess[\"target\"]\n    model_guess_target = model.predict(guess[\"values\"].reshape(1, -1))[0][target_idx]\n    model_min_target = model.predict(actions.x.reshape(1, -1))[0][target_idx]\n    logger.info(f\"Guess {optName}: {target_guess}\")\n    logger.info(f\"Model {optName}: {model_guess_target}\")\n    logger.info(f\"Model min {optName}: {model_min_target}\")\n\n    # optimize over all possible start values TODO: remove sampling\n    action_list = []\n    # TODO: handle optimization_target correctly\n    for guess_target, guess_values in zip(\n        guess[\"y_train_preCut\"][optName][:10], guess[\"X_train_preCut\"][:10].to_numpy()\n    ):\n        minimize_target_f = partial(minimize_target, target_idx, guess_target)\n        # TODO: add constraints=constrains_actions\n        action_list.append(minimize(minimize_target_f, guess_values, method=\"COBYLA\").x)\n    action_list = np.array(action_list)\n\n    # logging mean predicted target for all guess\n    # TODO: handle optimization_target correctly\n    mean_target_guess = np.mean(guess[\"y_train_preCut\"][optName])\n    mean_model_guess_target = np.mean(\n        model.predict(guess[\"X_train_preCut\"].to_numpy())[:, target_idx]\n    )\n    mean_model_min_target = np.mean(model.predict(action_list)[:, target_idx])\n    logger.info(f\"Mean Guess {optName}: {mean_target_guess}\")\n    logger.info(f\"Mean Model Guess {optName}: {mean_model_guess_target}\")\n    logger.info(f\"Mean Model min {optName}: {mean_model_min_target}\")\n\n    # logging new / old actions\n    logger.info(\"Actions new | old\")\n    new_actions = np.round(Scaler.inverse_transform(actions.x.reshape(1, -1)), 4)\n    old_actions = np.round(Scaler.inverse_transform(guess[\"values\"].reshape(1, -1)), 4)\n    action_dict = {}\n    for idx, action in enumerate(X_test.columns):\n        action_dict[action] = {\"new\": new_actions[0][idx], \"old\": old_actions[0][idx]}\n        logger.info(f\"{action}: {new_actions[0][idx]} | {old_actions[0][idx]}\")\n\n    return action_dict\n",
+  "filepath": "NOx-AI/src/NOxAI/predict_for_superset/nodes.py",
+  "parameters": {
+    "timescaledb": {
+      "machine": "Kleve-9054",
+      "values": [
+        "kuehlluftklappe-position",
+        "sekundaerluftklappe-1-position",
+        "sekundaerluftklappe-2-position",
+        "verbrennungsluftgeblaese-drehzahl",
+        "druck-brennkammer",
+        "temperatur-lambda-brennkammer",
+        "flox-temperatur",
+        "temperatur-prozessgas-brennkammer-ein",
+        "temp-bypassklappe",
+        "eintragsschnecke-1-geschwindigkeit",
+        "massenstrom-feeder",
+        "differenzdruck-filter",
+        "abreinigungen-prio-aktiv",
+        "Unterdruck_Einfrieren_Ist_Werte",
+        "Unterdruck_Einfrieren_Regler",
+        "lambda-1",
+        "lambda-2",
+        "agr-geblaese-geschwindigkeit",
+        "reaktor-1-druck-eintrag",
+        "bypassklappe-position",
+        "betriebsmodus",
+        "reaktor-1-temperatur-abgas-aus",
+        "reaktor-1-temperatur-abgas-ein",
+        "agr-klappe-brenner-position",
+        "flox-klappe-position",
+        "abgasgeschwindigkeit",
+        "abgastemperatur",
+        "co-konzentration",
+        "h-2-o-feuchte",
+        "o-2-konzentration",
+        "45W01_45TT013",
+        "prm-brennkammer-solltemperaturen-betriebstemperatur",
+        "prm-solltemperatur-kesseleintritt",
+        "prm-sollwert-sauerstoff-im-abgas",
+        "prm-position-agr-klappe-materialbetrieb",
+        "prm-solltemperatur-abgas-zu-reaktoren",
+        "prm-prozessgas-solltemperatur",
+        "prm-unterdruck-reaktor-materialbetrieb"
+      ],
+      "aggfunc": "mean",
+      "host": "localhost",
+      "port": "8001",
+      "user": "tsdb",
+      "password": "tsdb",
+      "database": "metrics"
+    },
+    "test_size": 0.3,
+    "random_state": 42,
+    "drop_columns": [
+      "ts",
+      "betriebsmodus"
+    ],
+    "filter": "betriebsmodus",
+    "filter_value": 3,
+    "time_column": "ts",
+    "log_time_in_sec": 2,
+    "shuffle": true,
+    "n_estimators": 3,
+    "n_estimators_retrain": 20,
+    "resample_data": "10s",
+    "shutdown_values": {
+      "max": [
+        100
+      ],
+      "min": [
+        50
+      ],
+      "sensor_name": [
+        "verbrennungsluftgeblaese-drehzahl"
+      ]
+    },
+    "optimization_target": [
+      "co-konzentration"
+    ],
+    "optimization_target_min": [
+      5
+    ],
+    "target_column": [
+      "kuehlluftklappe-position",
+      "sekundaerluftklappe-1-position",
+      "sekundaerluftklappe-2-position",
+      "verbrennungsluftgeblaese-drehzahl",
+      "druck-brennkammer",
+      "temperatur-lambda-brennkammer",
+      "flox-temperatur",
+      "temperatur-prozessgas-brennkammer-ein",
+      "temp-bypassklappe",
+      "eintragsschnecke-1-geschwindigkeit",
+      "massenstrom-feeder",
+      "differenzdruck-filter",
+      "abreinigungen-prio-aktiv",
+      "Unterdruck_Einfrieren_Ist_Werte",
+      "Unterdruck_Einfrieren_Regler",
+      "lambda-1",
+      "lambda-2",
+      "agr-geblaese-geschwindigkeit",
+      "reaktor-1-druck-eintrag",
+      "bypassklappe-position",
+      "reaktor-1-temperatur-abgas-aus",
+      "reaktor-1-temperatur-abgas-ein",
+      "agr-klappe-brenner-position",
+      "flox-klappe-position",
+      "abgasgeschwindigkeit",
+      "abgastemperatur",
+      "co-konzentration",
+      "h-2-o-feuchte",
+      "o-2-konzentration",
+      "45W01_45TT013"
+    ],
+    "missing": [
+      "66V01_n_rel.",
+      "Eflox_Gasventil_Floxleitung",
+      "Eflox_Gasventil_Zentralleitung",
+      "Reaktor 1 Prozessgastemperatur"
+    ],
+    "target_column_baseline": [],
+    "actions": [
+      "PRM_Brennkammer_Solltemperaturen_Betriebstemperatur",
+      "PRM_Solltemperatur_Kesseleintritt",
+      "PRM_Unterdruck_Reaktor_Materialbetrieb",
+      "PRM_Sollwert_Sauerstoff_Im_Abgas",
+      "PRM_Position_AGR_Klappe_Materialbetrieb",
+      "PRM_Solltemperatur_Abgas_Zu_Reaktoren",
+      "PRM_Prozessgas_Solltemperatur"
+    ],
+    "set_guess": [],
+    "2dMap": [
+      "Drezahl_Geblaese_1",
+      "Drezahl_Geblaese_2",
+      "Eintragschnecke_1_Zykluszeit",
+      "Eintragschnecke_1_Pulszeit",
+      "Eintragschnecke_2_Zykluszeit",
+      "Eintragschnecke_2_Pulszeit",
+      "Stellung_Luftklappe"
+    ],
+    "runningMaschine": 0,
+    "post_actions_url": "http://192.168.0.150:1880/actions",
+    "plotting": false
+  },
+  "run_command": "kedro run --to-nodes='get_actions'",
+  "inputs": [
+    "model",
+    "X_test",
+    "y_test",
+    "guess",
+    "parameters",
+    "Scaler"
+  ],
+  "outputs": [
+    "actions"
+  ],
+  "preview": null
+}

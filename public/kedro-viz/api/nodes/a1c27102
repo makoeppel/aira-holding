@@ -1,0 +1,157 @@
+{
+  "code": "def train_model(\n    X_train_retrain: pd.DataFrame,\n    y_train_retrain: pd.Series,\n    parameters: dict[str, Any],\n) -> Any:\n    \"\"\"Train RandomForestRegressor classifier.\n\n    Args:\n        X_train_retrain: Training data of features.\n        y_train_retrain: Training data for target.\n        parameters: Parameters defined in parameters.yml.\n    Returns:\n        model: Trained model.\n    \"\"\"\n\n    # create the random forest model\n    random_forest = RandomForestRegressor(\n        n_estimators=parameters[\"n_estimators\"],\n        random_state=parameters[\"random_state\"],\n    )\n\n    # train the random forest\n    random_forest.fit(X_train_retrain, y_train_retrain)\n\n    return random_forest\n",
+  "filepath": "NOx-AI/src/NOxAI/run_on_IoT/nodes.py",
+  "parameters": {
+    "timescaledb": {
+      "machine": "Kleve-9054",
+      "values": [
+        "kuehlluftklappe-position",
+        "sekundaerluftklappe-1-position",
+        "sekundaerluftklappe-2-position",
+        "verbrennungsluftgeblaese-drehzahl",
+        "druck-brennkammer",
+        "temperatur-lambda-brennkammer",
+        "flox-temperatur",
+        "temperatur-prozessgas-brennkammer-ein",
+        "temp-bypassklappe",
+        "eintragsschnecke-1-geschwindigkeit",
+        "massenstrom-feeder",
+        "differenzdruck-filter",
+        "abreinigungen-prio-aktiv",
+        "Unterdruck_Einfrieren_Ist_Werte",
+        "Unterdruck_Einfrieren_Regler",
+        "lambda-1",
+        "lambda-2",
+        "agr-geblaese-geschwindigkeit",
+        "reaktor-1-druck-eintrag",
+        "bypassklappe-position",
+        "betriebsmodus",
+        "reaktor-1-temperatur-abgas-aus",
+        "reaktor-1-temperatur-abgas-ein",
+        "agr-klappe-brenner-position",
+        "flox-klappe-position",
+        "abgasgeschwindigkeit",
+        "abgastemperatur",
+        "co-konzentration",
+        "h-2-o-feuchte",
+        "o-2-konzentration",
+        "45W01_45TT013",
+        "prm-brennkammer-solltemperaturen-betriebstemperatur",
+        "prm-solltemperatur-kesseleintritt",
+        "prm-sollwert-sauerstoff-im-abgas",
+        "prm-position-agr-klappe-materialbetrieb",
+        "prm-solltemperatur-abgas-zu-reaktoren",
+        "prm-prozessgas-solltemperatur",
+        "prm-unterdruck-reaktor-materialbetrieb"
+      ],
+      "aggfunc": "mean",
+      "host": "localhost",
+      "port": "8001",
+      "user": "tsdb",
+      "password": "tsdb",
+      "database": "metrics"
+    },
+    "test_size": 0.3,
+    "random_state": 42,
+    "drop_columns": [
+      "ts",
+      "betriebsmodus"
+    ],
+    "filter": "betriebsmodus",
+    "filter_value": 3,
+    "time_column": "ts",
+    "log_time_in_sec": 2,
+    "shuffle": true,
+    "n_estimators": 3,
+    "n_estimators_retrain": 20,
+    "resample_data": "10s",
+    "shutdown_values": {
+      "max": [
+        100
+      ],
+      "min": [
+        50
+      ],
+      "sensor_name": [
+        "verbrennungsluftgeblaese-drehzahl"
+      ]
+    },
+    "optimization_target": [
+      "co-konzentration"
+    ],
+    "optimization_target_min": [
+      5
+    ],
+    "target_column": [
+      "kuehlluftklappe-position",
+      "sekundaerluftklappe-1-position",
+      "sekundaerluftklappe-2-position",
+      "verbrennungsluftgeblaese-drehzahl",
+      "druck-brennkammer",
+      "temperatur-lambda-brennkammer",
+      "flox-temperatur",
+      "temperatur-prozessgas-brennkammer-ein",
+      "temp-bypassklappe",
+      "eintragsschnecke-1-geschwindigkeit",
+      "massenstrom-feeder",
+      "differenzdruck-filter",
+      "abreinigungen-prio-aktiv",
+      "Unterdruck_Einfrieren_Ist_Werte",
+      "Unterdruck_Einfrieren_Regler",
+      "lambda-1",
+      "lambda-2",
+      "agr-geblaese-geschwindigkeit",
+      "reaktor-1-druck-eintrag",
+      "bypassklappe-position",
+      "reaktor-1-temperatur-abgas-aus",
+      "reaktor-1-temperatur-abgas-ein",
+      "agr-klappe-brenner-position",
+      "flox-klappe-position",
+      "abgasgeschwindigkeit",
+      "abgastemperatur",
+      "co-konzentration",
+      "h-2-o-feuchte",
+      "o-2-konzentration",
+      "45W01_45TT013"
+    ],
+    "missing": [
+      "66V01_n_rel.",
+      "Eflox_Gasventil_Floxleitung",
+      "Eflox_Gasventil_Zentralleitung",
+      "Reaktor 1 Prozessgastemperatur"
+    ],
+    "target_column_baseline": [],
+    "actions": [
+      "PRM_Brennkammer_Solltemperaturen_Betriebstemperatur",
+      "PRM_Solltemperatur_Kesseleintritt",
+      "PRM_Unterdruck_Reaktor_Materialbetrieb",
+      "PRM_Sollwert_Sauerstoff_Im_Abgas",
+      "PRM_Position_AGR_Klappe_Materialbetrieb",
+      "PRM_Solltemperatur_Abgas_Zu_Reaktoren",
+      "PRM_Prozessgas_Solltemperatur"
+    ],
+    "set_guess": [],
+    "2dMap": [
+      "Drezahl_Geblaese_1",
+      "Drezahl_Geblaese_2",
+      "Eintragschnecke_1_Zykluszeit",
+      "Eintragschnecke_1_Pulszeit",
+      "Eintragschnecke_2_Zykluszeit",
+      "Eintragschnecke_2_Pulszeit",
+      "Stellung_Luftklappe"
+    ],
+    "runningMaschine": 0,
+    "post_actions_url": "http://192.168.0.150:1880/actions",
+    "plotting": false
+  },
+  "run_command": "kedro run --to-nodes='train_model'",
+  "inputs": [
+    "X_train_retrain",
+    "y_train_retrain",
+    "parameters"
+  ],
+  "outputs": [
+    "model_train"
+  ],
+  "preview": null
+}

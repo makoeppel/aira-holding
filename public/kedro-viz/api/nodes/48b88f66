@@ -1,0 +1,8 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/02_intermediate/clean_data_hour.csv",
+  "run_command": "kedro run --to-outputs=clean_data_hour",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

@@ -1,0 +1,157 @@
+{
+  "code": "def evaluate_rnn_historical_rolling(  # noqa: PLR0915\n    X_sensor: pd.DataFrame,\n    y_emissions: pd.DataFrame,\n    parameters: dict[str, Any],\n    horizon_minutes: int = 30,\n    step_unit: str = \"hour\",\n    step_size: int = 1,\n) -> dict[str, Any]:\n    \"\"\"\n    Rolling historical evaluation for an RNN forecaster.\n\n    At each cutoff:\n      1. train only on history up to the cutoff\n      2. predict the next `horizon_minutes`\n      3. compare predictions against actual y values\n      4. collect per-window and global metrics\n\n    Parameters\n    ----------\n    X_sensor : pd.DataFrame\n        Feature dataframe indexed by datetime.\n    y_emissions : pd.DataFrame\n        Target dataframe indexed by datetime.\n    parameters : dict[str, Any]\n        Model/training parameters. Must include at least:\n          - \"freq\"\n        May also include:\n          - \"seq_len\", \"rnn_units\", \"dense_units\", \"dropout\", \"batch_size\",\n            \"epochs\", \"learning_rate\", \"random_state\", \"val_frac\", \"patience\",\n            \"lookback_rows\", \"verbose\", \"target_scaling\"\n    horizon_minutes : int, default=30\n        Forecast horizon in minutes.\n    step_unit : str, default=\"hour\"\n        Rolling cutoff step unit: \"hour\" or \"day\".\n    step_size : int, default=1\n        Number of hours/days to move forward each iteration.\n\n    Returns\n    -------\n    dict[str, Any] with keys:\n        - \"predictions\": pd.DataFrame\n        - \"window_metrics\": pd.DataFrame\n        - \"global_metrics\": dict[str, float]\n    \"\"\"\n    logger = logging.getLogger(__name__)\n\n    freq = parameters[\"freq\"]\n    seq_len = int(parameters.get(\"seq_len\", 64))\n    lookback_rows = parameters.get(\"lookback_rows\", None)\n    random_state = int(parameters.get(\"random_state\", 42))\n\n    tf.keras.utils.set_random_seed(random_state)\n\n    X_aligned, y_aligned, _, _ = _validate_and_align_inputs(X_sensor, y_emissions)\n    # resample to have the same length\n    X_aligned = X_aligned.resample(freq).mean()\n    y_aligned = y_aligned.resample(freq).mean()\n\n    horizon_steps = _compute_horizon_steps(\n        X_aligned.index.max(),\n        freq,\n        horizon_minutes,\n    )\n\n    step_unit = \"h\"\n    step_offset = _infer_step_offset(step_unit, step_size)\n\n    # Need enough history to create at least a meaningful training set.\n    # seq_len + horizon_steps gives a minimal practical boundary.\n    start_cutoff_pos = seq_len + horizon_steps\n    if len(X_aligned) <= start_cutoff_pos:\n        raise ValueError(\n            f\"Not enough aligned rows for rolling evaluation. \"\n            f\"Need more than seq_len + horizon_steps = {start_cutoff_pos}, got {len(X_aligned)}.\"\n        )\n\n    start_cutoff = X_aligned.index[start_cutoff_pos - 1]\n    last_possible_cutoff = X_aligned.index.max() - pd.Timedelta(minutes=horizon_minutes)\n\n    all_prediction_rows: list[pd.DataFrame] = []\n    window_metrics: list[dict[str, Any]] = []\n\n    cutoff = start_cutoff\n\n    while cutoff <= last_possible_cutoff:\n        logger.info(\"Evaluating cutoff %s\", cutoff)\n\n        # Use only information available up to cutoff\n        X_hist = X_aligned.loc[:cutoff]\n        y_hist = y_aligned.loc[:cutoff]\n\n        if (\n            lookback_rows is not None\n            and lookback_rows > 0\n            and len(X_hist) > lookback_rows\n        ):\n            X_hist = X_hist.iloc[-lookback_rows:]\n            y_hist = y_hist.iloc[-lookback_rows:]\n\n        if len(X_hist) < seq_len + 10:\n            cutoff = cutoff + step_offset\n            continue\n\n        future_index = pd.date_range(\n            cutoff + pd.tseries.frequencies.to_offset(freq),\n            periods=horizon_steps,\n            freq=freq,\n        )\n\n        # Skip if we do not have full future actuals available\n        if not future_index.isin(y_aligned.index).all():\n            cutoff = cutoff + step_offset\n            continue\n\n        y_true = y_aligned.loc[future_index]\n\n        # Train target is y(t + horizon) aligned to X(t)\n        y_future = y_hist.shift(-horizon_steps)\n        train = X_hist.join(y_future, how=\"inner\", rsuffix=\"__target\").dropna()\n\n        X_train_df = train[X_hist.columns]\n        y_train_df = train[y_hist.columns]\n\n        if len(X_train_df) < seq_len + 10:\n            cutoff = cutoff + step_offset\n            continue\n\n        model = _build_rnn_model(parameters)\n        model.fit(X_train_df, y_train_df)\n\n        # Predict next horizon from data available up to cutoff\n        y_pred_np = model.forecast_horizon(\n            X_hist.tail(seq_len), horizon_steps=horizon_steps\n        )\n        y_pred = pd.DataFrame(\n            y_pred_np,\n            index=future_index,\n            columns=y_emissions.columns,\n        )\n\n        # Per-window metrics\n        y_true_np = y_true.to_numpy(dtype=np.float32)\n        y_pred_np = y_pred.to_numpy(dtype=np.float32)\n\n        mse_val = mean_squared_error(y_true_np, y_pred_np)\n\n        try:\n            r2_val = r2_score(y_true_np, y_pred_np)\n        except ValueError:\n            r2_val = np.nan\n\n        window_metrics.append(\n            {\n                \"cutoff\": cutoff,\n                \"forecast_start\": future_index[0],\n                \"forecast_end\": future_index[-1],\n                \"n_train_rows\": len(X_train_df),\n                \"n_forecast_rows\": len(future_index),\n                \"mse\": float(mse_val),\n                \"r2\": float(r2_val) if not pd.isna(r2_val) else np.nan,\n            }\n        )\n\n        logger.info(f\"mse {float(mse_val)}\")\n        logger.info(f\"r2 {float(r2_val)}\")\n\n        pred_block = y_pred.copy()\n        pred_block.columns = [f\"{c}_pred\" for c in pred_block.columns]\n\n        true_block = y_true.copy()\n        true_block.columns = [f\"{c}_true\" for c in true_block.columns]\n\n        merged_block = pred_block.join(true_block, how=\"inner\")\n        merged_block[\"cutoff\"] = cutoff\n\n        all_prediction_rows.append(merged_block)\n\n        cutoff = cutoff + step_offset\n\n    if not all_prediction_rows:\n        raise ValueError(\n            \"No evaluation windows were produced. \"\n            \"Check seq_len, horizon_minutes, step_unit/step_size, and data availability.\"\n        )\n\n    predictions_df = pd.concat(all_prediction_rows).sort_index()\n    window_metrics_df = pd.DataFrame(window_metrics)\n\n    # Global metrics over all predictions\n    pred_cols = [c for c in predictions_df.columns if c.endswith(\"_pred\")]\n    true_cols = [c for c in predictions_df.columns if c.endswith(\"_true\")]\n\n    y_pred_all = predictions_df[pred_cols].to_numpy(dtype=np.float32)\n    y_true_all = predictions_df[true_cols].to_numpy(dtype=np.float32)\n\n    global_mse = mean_squared_error(y_true_all, y_pred_all)\n\n    try:\n        global_r2 = r2_score(y_true_all, y_pred_all)\n    except ValueError:\n        global_r2 = np.nan\n\n    return {\n        \"predictions\": predictions_df,\n        \"window_metrics\": window_metrics_df,\n        \"global_metrics\": {\n            \"mse\": float(global_mse),\n            \"r2\": float(global_r2) if not pd.isna(global_r2) else np.nan,\n            \"n_windows\": int(len(window_metrics_df)),\n            \"n_predictions\": int(len(predictions_df)),\n        },\n    }\n",
+  "filepath": "NOx-AI/src/NOxAI/tabor_superset/nodes.py",
+  "parameters": {
+    "timescaledb": {
+      "machine": "Kleve-9054",
+      "values": [
+        "kuehlluftklappe-position",
+        "sekundaerluftklappe-1-position",
+        "sekundaerluftklappe-2-position",
+        "verbrennungsluftgeblaese-drehzahl",
+        "druck-brennkammer",
+        "temperatur-lambda-brennkammer",
+        "flox-temperatur",
+        "temperatur-prozessgas-brennkammer-ein",
+        "temp-bypassklappe",
+        "eintragsschnecke-1-geschwindigkeit",
+        "massenstrom-feeder",
+        "differenzdruck-filter",
+        "abreinigungen-prio-aktiv",
+        "Unterdruck_Einfrieren_Ist_Werte",
+        "Unterdruck_Einfrieren_Regler",
+        "lambda-1",
+        "lambda-2",
+        "agr-geblaese-geschwindigkeit",
+        "reaktor-1-druck-eintrag",
+        "bypassklappe-position",
+        "betriebsmodus",
+        "reaktor-1-temperatur-abgas-aus",
+        "reaktor-1-temperatur-abgas-ein",
+        "agr-klappe-brenner-position",
+        "flox-klappe-position",
+        "abgasgeschwindigkeit",
+        "abgastemperatur",
+        "co-konzentration",
+        "h-2-o-feuchte",
+        "o-2-konzentration",
+        "45W01_45TT013",
+        "prm-brennkammer-solltemperaturen-betriebstemperatur",
+        "prm-solltemperatur-kesseleintritt",
+        "prm-sollwert-sauerstoff-im-abgas",
+        "prm-position-agr-klappe-materialbetrieb",
+        "prm-solltemperatur-abgas-zu-reaktoren",
+        "prm-prozessgas-solltemperatur",
+        "prm-unterdruck-reaktor-materialbetrieb"
+      ],
+      "aggfunc": "mean",
+      "host": "localhost",
+      "port": "8001",
+      "user": "tsdb",
+      "password": "tsdb",
+      "database": "metrics"
+    },
+    "test_size": 0.3,
+    "random_state": 42,
+    "drop_columns": [
+      "ts",
+      "betriebsmodus"
+    ],
+    "filter": "betriebsmodus",
+    "filter_value": 3,
+    "time_column": "ts",
+    "log_time_in_sec": 2,
+    "shuffle": true,
+    "n_estimators": 3,
+    "n_estimators_retrain": 20,
+    "resample_data": "10s",
+    "shutdown_values": {
+      "max": [
+        100
+      ],
+      "min": [
+        50
+      ],
+      "sensor_name": [
+        "verbrennungsluftgeblaese-drehzahl"
+      ]
+    },
+    "optimization_target": [
+      "co-konzentration"
+    ],
+    "optimization_target_min": [
+      5
+    ],
+    "target_column": [
+      "kuehlluftklappe-position",
+      "sekundaerluftklappe-1-position",
+      "sekundaerluftklappe-2-position",
+      "verbrennungsluftgeblaese-drehzahl",
+      "druck-brennkammer",
+      "temperatur-lambda-brennkammer",
+      "flox-temperatur",
+      "temperatur-prozessgas-brennkammer-ein",
+      "temp-bypassklappe",
+      "eintragsschnecke-1-geschwindigkeit",
+      "massenstrom-feeder",
+      "differenzdruck-filter",
+      "abreinigungen-prio-aktiv",
+      "Unterdruck_Einfrieren_Ist_Werte",
+      "Unterdruck_Einfrieren_Regler",
+      "lambda-1",
+      "lambda-2",
+      "agr-geblaese-geschwindigkeit",
+      "reaktor-1-druck-eintrag",
+      "bypassklappe-position",
+      "reaktor-1-temperatur-abgas-aus",
+      "reaktor-1-temperatur-abgas-ein",
+      "agr-klappe-brenner-position",
+      "flox-klappe-position",
+      "abgasgeschwindigkeit",
+      "abgastemperatur",
+      "co-konzentration",
+      "h-2-o-feuchte",
+      "o-2-konzentration",
+      "45W01_45TT013"
+    ],
+    "missing": [
+      "66V01_n_rel.",
+      "Eflox_Gasventil_Floxleitung",
+      "Eflox_Gasventil_Zentralleitung",
+      "Reaktor 1 Prozessgastemperatur"
+    ],
+    "target_column_baseline": [],
+    "actions": [
+      "PRM_Brennkammer_Solltemperaturen_Betriebstemperatur",
+      "PRM_Solltemperatur_Kesseleintritt",
+      "PRM_Unterdruck_Reaktor_Materialbetrieb",
+      "PRM_Sollwert_Sauerstoff_Im_Abgas",
+      "PRM_Position_AGR_Klappe_Materialbetrieb",
+      "PRM_Solltemperatur_Abgas_Zu_Reaktoren",
+      "PRM_Prozessgas_Solltemperatur"
+    ],
+    "set_guess": [],
+    "2dMap": [
+      "Drezahl_Geblaese_1",
+      "Drezahl_Geblaese_2",
+      "Eintragschnecke_1_Zykluszeit",
+      "Eintragschnecke_1_Pulszeit",
+      "Eintragschnecke_2_Zykluszeit",
+      "Eintragschnecke_2_Pulszeit",
+      "Stellung_Luftklappe"
+    ],
+    "runningMaschine": 0,
+    "post_actions_url": "http://192.168.0.150:1880/actions",
+    "plotting": false
+  },
+  "run_command": "kedro run --to-nodes='evaluate_rnn_historical_rolling'",
+  "inputs": [
+    "X_sensor",
+    "y_emissions",
+    "parameters"
+  ],
+  "outputs": [
+    "y_forecast"
+  ],
+  "preview": null
+}

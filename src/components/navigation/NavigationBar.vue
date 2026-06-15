@@ -103,6 +103,14 @@
 			usage: ["footer"],
 			variant: "text"
 		},
+		{
+			text: "buttons.kedro",
+			key: "kedro",
+			to: { name: "kedro" },
+			icon: "",
+			usage: ["footer"],
+			variant: "text"
+		},
 		/*
 		{
 			text: "buttons.dataSecurity",

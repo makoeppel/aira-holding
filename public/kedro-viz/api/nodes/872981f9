@@ -1,0 +1,8 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/03_primary/X_test.csv",
+  "run_command": "kedro run --to-outputs=X_test",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

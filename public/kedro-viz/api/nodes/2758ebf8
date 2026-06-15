@@ -1,0 +1,8 @@
+{
+  "type": "json.json_dataset.JSONDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/08_reporting/evaluation_machine_model",
+  "run_command": "kedro run --to-outputs=evaluation_dict",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

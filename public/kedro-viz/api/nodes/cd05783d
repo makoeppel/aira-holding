@@ -1,0 +1,8 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/01_raw/timescaledb.csv",
+  "run_command": "kedro run --to-outputs=process_timescaledb_data",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

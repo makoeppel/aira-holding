@@ -1,0 +1,8 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/07_model_output/y_pred.csv",
+  "run_command": "kedro run --to-outputs=y_pred",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

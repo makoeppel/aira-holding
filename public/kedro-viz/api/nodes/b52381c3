@@ -1,0 +1,8 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "/Users/mariuskoppel/Documents/AIRA/Pyreg/NOx-AI/data/01_raw/c3-doerth-last_two_hours.csv",
+  "run_command": null,
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}
