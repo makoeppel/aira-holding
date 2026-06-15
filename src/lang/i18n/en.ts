@@ -8,6 +8,7 @@ export default {
 		support: "Unterstützen",
 		imprint: "Imprint",
 		gep: "Gender Equality Plan",
+		ixon: "Ixon Import Configuration",
 		dataSecurity: "Datenschutz",
 		settings: "Settings",
 		navigateToHome: "Zurück zur Startseite",
@@ -19,7 +20,8 @@ export default {
 		home: "AIRA Holding GmbH",
 		imprint: "Imprint",
 		contact: "Get in touch",
-		gep: "Gender Equality Plan"
+		gep: "Gender Equality Plan",
+		ixon: "Ixon Import Configuration",
 	},
 	home: {
 		companyPurpose: {

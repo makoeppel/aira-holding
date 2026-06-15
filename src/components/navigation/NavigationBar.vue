@@ -95,6 +95,14 @@
 			usage: ["footer"],
 			variant: "text"
 		},
+		{
+			text: "buttons.ixon",
+			key: "ixon",
+			to: { name: "ixon" },
+			icon: "",
+			usage: ["footer"],
+			variant: "text"
+		},
 		/*
 		{
 			text: "buttons.dataSecurity",
