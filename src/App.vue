@@ -30,20 +30,24 @@
 </script>
 
 <template>
-	<v-app>
-		<NavigationBar></NavigationBar>
-		<v-main>
-			<v-container class="height-screen" fluid>
-				<RouterView />
-			</v-container>
-		</v-main>
-		<v-lazy
-			:options="{'threshold':0.5}"
-			min-height="60px">
-			<BottomBarComponent v-if="false"></BottomBarComponent>
-			<FooterBarComponent></FooterBarComponent>
-		</v-lazy>
-	</v-app>
+  <v-app>
+    <NavigationBar />
+    <v-main>
+      <v-container
+        class="height-screen"
+        fluid
+      >
+        <RouterView />
+      </v-container>
+    </v-main>
+    <v-lazy
+      :options="{'threshold':0.5}"
+      min-height="60px"
+    >
+      <BottomBarComponent v-if="false" />
+      <FooterBarComponent />
+    </v-lazy>
+  </v-app>
 </template>
 
 <script lang="ts">

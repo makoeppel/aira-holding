@@ -1,6 +1,6 @@
 <template>
-	<IconComponentDark v-if="theme.current.value.dark"></IconComponentDark>
-	<IconComponentLight v-else></IconComponentLight>
+  <IconComponentDark v-if="theme.current.value.dark" />
+  <IconComponentLight v-else />
 </template>
 <script setup lang="ts">
 	import { defineAsyncComponent } from 'vue';

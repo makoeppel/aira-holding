@@ -1,46 +1,74 @@
 <template>
-    <v-container fluid class="px-0 py-1">
-        <v-row justify="center" class="text-center">
-            <v-col cols="12" class="pb-2">
-                <v-avatar size="110" class="mx-auto profile-avatar-glow">
-                    <v-img
-                        :src="imgSrc"
-                        :alt="`Profile picture of ${name}`"
-                        cover></v-img>
-                </v-avatar>
-            </v-col>
+  <v-container
+    fluid
+    class="px-0 py-1"
+  >
+    <v-row
+      justify="center"
+      class="text-center"
+    >
+      <v-col
+        cols="12"
+        class="pb-2"
+      >
+        <v-avatar
+          size="110"
+          class="mx-auto profile-avatar-glow"
+        >
+          <v-img
+            :src="imgSrc"
+            :alt="`Profile picture of ${name}`"
+            cover
+          />
+        </v-avatar>
+      </v-col>
             
-            <v-col cols="12" class="py-0">
-                <h3 class="text-h6 font-weight-bold text-white mb-0 leading-tight">{{ name }}</h3>
-                <div v-if="title" class="text-caption text-primary font-weight-medium mt-1 opacity-90">
-                    {{ title }}
-                </div>
-            </v-col>
+      <v-col
+        cols="12"
+        class="py-0"
+      >
+        <h3 class="text-h6 font-weight-bold text-white mb-0 leading-tight">
+          {{ name }}
+        </h3>
+        <div
+          v-if="title"
+          class="text-caption text-primary font-weight-medium mt-1 opacity-90"
+        >
+          {{ title }}
+        </div>
+      </v-col>
             
-            <v-col cols="12" class="pt-2 pb-0 d-flex justify-center gap-1">
-                <v-btn
-                    v-for="(social, socialIndex) in socials" 
-                    :key="`${name}-${socialIndex}`"
-                    variant="plain"
-                    density="compact"
-                    color="primary"
-                    :icon="social.icon"
-                    :href="social.href"
-                    target="_blank"
-                    :aria-label="`Link to ${social.plattformName} profile of ${name}`"
-                    class="social-icon-btn"></v-btn>
-            </v-col>
-        </v-row>
+      <v-col
+        cols="12"
+        class="pt-2 pb-0 d-flex justify-center gap-1"
+      >
+        <v-btn
+          v-for="(social, socialIndex) in socials" 
+          :key="`${name}-${socialIndex}`"
+          variant="plain"
+          density="compact"
+          color="primary"
+          :icon="social.icon"
+          :href="social.href"
+          target="_blank"
+          :aria-label="`Link to ${social.plattformName} profile of ${name}`"
+          class="social-icon-btn"
+        />
+      </v-col>
+    </v-row>
         
-        <v-row class="mt-3">
-            <v-col cols="12" class="py-0">
-                <!-- Removed line-clamp classes to let the full biography render naturally -->
-                <p class="text-body-2 text-left opacity-70 mb-0 px-2 full-bio-text">
-                    {{ $t(paragraph) }}
-                </p>
-            </v-col>
-        </v-row>
-    </v-container>
+    <v-row class="mt-3">
+      <v-col
+        cols="12"
+        class="py-0"
+      >
+        <!-- Removed line-clamp classes to let the full biography render naturally -->
+        <p class="text-body-2 text-left opacity-70 mb-0 px-2 full-bio-text">
+          {{ $t(paragraph) }}
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">

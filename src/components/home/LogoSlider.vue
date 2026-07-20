@@ -2,7 +2,6 @@
   <div class="logo-section">
     <div class="logo-viewport">
       <div class="logo-track">
-
         <a
           v-for="logo in doubledLogos"
           :key="logo.name + Math.random()"
@@ -11,9 +10,11 @@
           rel="noopener noreferrer"
           class="logo-item"
         >
-          <img :src="logo.logo" :alt="logo.name" />
+          <img
+            :src="logo.logo"
+            :alt="logo.name"
+          >
         </a>
-
       </div>
     </div>
   </div>

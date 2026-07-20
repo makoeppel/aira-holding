@@ -1,18 +1,30 @@
 <template>
-	<v-app-bar scroll-behavior="elevate" floating>
-		<home-button></home-button>
+  <v-app-bar
+    scroll-behavior="elevate"
+    floating
+  >
+    <home-button />
 
-		<v-btn v-for="navigationTarget in filteredNavigationTarget" v-bind:key="navigationTarget.key"
-			class="text-none mx-2 d-none d-md-inline-flex" :variant="navigationTarget.variant" :to="navigationTarget.to">
-			{{ $t(navigationTarget.text) }}
-		</v-btn>
+    <v-btn
+      v-for="navigationTarget in filteredNavigationTarget"
+      :key="navigationTarget.key"
+      class="text-none mx-2 d-none d-md-inline-flex"
+      :variant="navigationTarget.variant"
+      :to="navigationTarget.to"
+    >
+      {{ $t(navigationTarget.text) }}
+    </v-btn>
 
-		<responsive-button v-for="responsiveNavigationTarget in responsiveNavigationTargets"
-			v-bind:key="responsiveNavigationTarget.key" :text="$t(responsiveNavigationTarget.text)"
-			:icon="responsiveNavigationTarget.icon" :color="responsiveNavigationTarget.color"
-			:variant="responsiveNavigationTarget.variant" :to="responsiveNavigationTarget.to">
-		</responsive-button>
-	</v-app-bar>
+    <responsive-button
+      v-for="responsiveNavigationTarget in responsiveNavigationTargets"
+      :key="responsiveNavigationTarget.key"
+      :text="$t(responsiveNavigationTarget.text)"
+      :icon="responsiveNavigationTarget.icon"
+      :color="responsiveNavigationTarget.color"
+      :variant="responsiveNavigationTarget.variant"
+      :to="responsiveNavigationTarget.to"
+    />
+  </v-app-bar>
 </template>
 <script lang="ts" setup>
 	import { VAppBar, VBtn } from 'vuetify/lib/components/index.mjs';
@@ -29,7 +41,7 @@
 <script lang="ts">
 	export interface NavigationTarget {
 		text: string,
-		to: Object,
+		to: object,
 		key: string,
 		icon: string,
 		usage: string[],

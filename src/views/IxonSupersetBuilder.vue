@@ -1,132 +1,238 @@
 <template>
   <v-container class="text-center">
     <v-row justify="center">
-      <v-col cols="12" md="9">
-
+      <v-col
+        cols="12"
+        md="9"
+      >
         <div class="form-card">
-
-          <h2 class="title">IXON → Data Platform Config Builder</h2>
+          <h2 class="title">
+            IXON → Data Platform Config Builder
+          </h2>
           <p class="subtitle">
             Generate YAML configs + Superset Virtual Dataset SQL for Pyreg digital twin pipeline.
           </p>
 
           <!-- ================= COMPANY ================= -->
-          <h3 class="section-title">Company</h3>
+          <h3 class="section-title">
+            Company
+          </h3>
 
           <label class="label">Company Public ID</label>
-          <input class="input" v-model="config.machine.companie.publicId" />
+          <input
+            v-model="config.machine.companie.publicId"
+            class="input"
+          >
 
           <label class="label">Company Name</label>
-          <input class="input" v-model="config.machine.companie.name" />
+          <input
+            v-model="config.machine.companie.name"
+            class="input"
+          >
 
           <!-- ================= AGENT ================= -->
-          <h3 class="section-title">Agent</h3>
+          <h3 class="section-title">
+            Agent
+          </h3>
 
           <label class="label">Agent Public ID</label>
-          <input class="input" v-model="config.machine.agent.publicId" />
+          <input
+            v-model="config.machine.agent.publicId"
+            class="input"
+          >
 
           <!-- ================= DATA SOURCE ================= -->
-          <h3 class="section-title">Data Source</h3>
+          <h3 class="section-title">
+            Data Source
+          </h3>
 
           <label class="label">Data Source Public ID</label>
-          <input class="input" v-model="config.machine.data_source.publicId" />
+          <input
+            v-model="config.machine.data_source.publicId"
+            class="input"
+          >
 
           <label class="label">Data Source Name</label>
-          <input class="input" v-model="config.machine.data_source.name" />
+          <input
+            v-model="config.machine.data_source.name"
+            class="input"
+          >
 
           <!-- ================= SETTINGS ================= -->
-          <h3 class="section-title">Settings</h3>
+          <h3 class="section-title">
+            Settings
+          </h3>
 
           <label class="label">InfluxDB Token Env</label>
-          <input class="input" v-model="config.settings.influxdb.token_env" />
+          <input
+            v-model="config.settings.influxdb.token_env"
+            class="input"
+          >
 
           <label class="label">InfluxDB URL</label>
-          <input class="input" v-model="config.settings.influxdb.url" />
+          <input
+            v-model="config.settings.influxdb.url"
+            class="input"
+          >
 
           <label class="label">InfluxDB Database</label>
-          <input class="input" v-model="config.settings.influxdb.database" />
+          <input
+            v-model="config.settings.influxdb.database"
+            class="input"
+          >
 
-          <hr style="opacity:0.1; margin:15px 0;" />
+          <hr style="opacity:0.1; margin:15px 0;">
 
           <label class="label">TimescaleDB Host</label>
-          <input class="input" v-model="config.settings.timescaledb.host" />
+          <input
+            v-model="config.settings.timescaledb.host"
+            class="input"
+          >
 
           <label class="label">TimescaleDB DB</label>
-          <input class="input" v-model="config.settings.timescaledb.database" />
+          <input
+            v-model="config.settings.timescaledb.database"
+            class="input"
+          >
 
           <label class="label">TimescaleDB User</label>
-          <input class="input" v-model="config.settings.timescaledb.user" />
+          <input
+            v-model="config.settings.timescaledb.user"
+            class="input"
+          >
 
           <label class="label">TimescaleDB Password</label>
-          <input class="input" v-model="config.settings.timescaledb.password" />
+          <input
+            v-model="config.settings.timescaledb.password"
+            class="input"
+          >
 
-          <hr style="opacity:0.1; margin:15px 0;" />
+          <hr style="opacity:0.1; margin:15px 0;">
 
           <label class="label">IXON Application ID</label>
-          <input class="input" v-model="config.settings.ixon.application_id_env" />
+          <input
+            v-model="config.settings.ixon.application_id_env"
+            class="input"
+          >
 
           <label class="label">IXON Email Env</label>
-          <input class="input" v-model="config.settings.ixon.email_env" />
+          <input
+            v-model="config.settings.ixon.email_env"
+            class="input"
+          >
 
           <label class="label">IXON Password Env</label>
-          <input class="input" v-model="config.settings.ixon.password_env" />
+          <input
+            v-model="config.settings.ixon.password_env"
+            class="input"
+          >
 
           <label class="label">IXON Base URL</label>
-          <input class="input" v-model="config.settings.ixon.base_url" />
+          <input
+            v-model="config.settings.ixon.base_url"
+            class="input"
+          >
 
           <!-- ================= EXPORT ================= -->
-          <h3 class="section-title">Export Settings</h3>
+          <h3 class="section-title">
+            Export Settings
+          </h3>
 
           <label class="label">Export Time (days)</label>
-          <input class="input" type="number" v-model="config.machine.export_days" />
+          <input
+            v-model="config.machine.export_days"
+            class="input"
+            type="number"
+          >
 
           <!-- ================= TAGS ================= -->
-          <h3 class="section-title">Tags</h3>
+          <h3 class="section-title">
+            Tags
+          </h3>
 
-          <div v-for="(tag, i) in config.machine.tags" :key="i">
-
+          <div
+            v-for="(tag, i) in config.machine.tags"
+            :key="i"
+          >
             <label class="label">Label (SQL Column Name)</label>
-            <input class="input" v-model="tag.label" />
+            <input
+              v-model="tag.label"
+              class="input"
+            >
 
             <label class="label">Metric (IXON / DB Key)</label>
-            <input class="input" v-model="tag.metric" />
+            <input
+              v-model="tag.metric"
+              class="input"
+            >
 
             <!-- NEW: MIN / MAX -->
             <label class="label">Min Value</label>
-            <input class="input" type="number" v-model.number="tag.min" />
+            <input
+              v-model.number="tag.min"
+              class="input"
+              type="number"
+            >
 
             <label class="label">Max Value</label>
-            <input class="input" type="number" v-model.number="tag.max" />
+            <input
+              v-model.number="tag.max"
+              class="input"
+              type="number"
+            >
 
             <!-- NEW: prediction target -->
             <label class="label">
-              <input type="checkbox" v-model="tag.predictionTarget" />
+              <input
+                v-model="tag.predictionTarget"
+                type="checkbox"
+              >
               Prediction Target
             </label>
 
-            <button class="small-btn" @click="removeTag(i)">X</button>
+            <button
+              class="small-btn"
+              @click="removeTag(i)"
+            >
+              X
+            </button>
 
-            <hr style="opacity:0.08; margin:12px 0;" />
+            <hr style="opacity:0.08; margin:12px 0;">
           </div>
 
-          <button class="button secondary" @click="addTag">
+          <button
+            class="button secondary"
+            @click="addTag"
+          >
             + Add Tag
           </button>
 
           <!-- ================= YAML OUTPUT ================= -->
-          <h3 class="section-title">YAML Output</h3>
+          <h3 class="section-title">
+            YAML Output
+          </h3>
 
-          <button class="button" @click="copyYaml">Copy YAML</button>
+          <button
+            class="button"
+            @click="copyYaml"
+          >
+            Copy YAML
+          </button>
           <pre class="box">{{ yamlOutput }}</pre>
 
           <!-- ================= SQL OUTPUT ================= -->
-          <h3 class="section-title">Superset SQL</h3>
+          <h3 class="section-title">
+            Superset SQL
+          </h3>
 
-          <button class="button" @click="copySQL">Copy SQL</button>
+          <button
+            class="button"
+            @click="copySQL"
+          >
+            Copy SQL
+          </button>
           <pre class="box">{{ sqlQuery }}</pre>
-
         </div>
-
       </v-col>
     </v-row>
   </v-container>
