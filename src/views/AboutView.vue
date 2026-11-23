@@ -347,6 +347,9 @@
                     :aria-label="`${s.plattformName} profile of ${a.name}`"
                   />
                 </div>
+              <p class="text-body-2 aira-muted mb-0">
+                {{ $t(a.paragraph) }}
+              </p>
             </div>
           </div>
         </div>

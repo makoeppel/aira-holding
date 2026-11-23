@@ -83,7 +83,7 @@ export const services = [
       'Clear recommendation: where AI makes sense, and where it does not',
       'A structured dataset as a deliverable of its own'
     ],
-    references: 'Feasibility studies with PYREG and ARTi on pyrolysis plants, covering emissions and biochar properties, not only NOx.'
+    references: 'Feasibility studies with PYREG and ARTi on pyrolysis plants and emissions.'
   },
   {
     id: 'consulting',
@@ -355,6 +355,7 @@ export const teamRoles: Record<string, string> = {
 
 export const advisors = [
   { name: 'Felipe Valdez', role: 'Strategic Advisor',
+    paragraph: 'Focus: Strategic advisory, business development, partnerships and ecosystem building.',
     socials: [ {plattformName: "LinkedIn", icon: "mdi-linkedin", href: "https://www.linkedin.com/in/felipeavaldez/"} ]
   }
 ]
@@ -391,8 +392,8 @@ export const talks = [
   { venue: '7th Biochar School 2023 · Turin, Italy', title: 'AI applied to biochar production', href: 'https://www.ibe.cnr.it/wp-content/uploads/2023/09/biocharschool2023.pdf' },
   { venue: 'German Biochar 2023 · Berlin', title: 'Workshop: Digitalisierung und KI trifft Pflanzenkohle', href: 'https://german-biochar-forum.com/events/klimaschutz-kreislaufwirtschaft-energiewende-mit-pflanzenkohle/programm#' },
   { venue: 'US Biochar / NABC 2024 · Sacramento, USA', title: 'Revolutionizing Biochar Production: AI-Driven Innovation', href: 'https://biochar-us.org/usbinabc24-schweitzer-revolutionizing-biochar-production-ai-driven-innovation' },
-  { venue: 'Minnesota Biochar Initiative · Webinar', title: 'AI in biochar production', href: 'https://www.linkedin.com/events/7232421549830508544/' },
-  { venue: 'Nordic Biochar Network · Webinar', title: 'How do you prepare for AI in biochar production?', href: 'https://www.linkedin.com/events/webinar-howdoyouprepareforaiinb7252739089534246913/?showRequesters=false&viewAsMember=false&audienceDemographics=false&showShareByPost=false&sTrk=%27%27&sV=%27%27&sAtp=%27%27&invite=false&message=false&skipRedirect=true' },
-  { venue: 'Platform Cooperativism Consortium 2025', title: 'Open Agriculture AI and Data', href: 'https://platform.coop/blog/open-agriculture-ai-and-data/' },
+  { venue: 'Minnesota Biochar Initiative 2024 · Webinar', title: 'AI in biochar production', href: 'https://www.linkedin.com/events/7232421549830508544/' },
+  { venue: 'Nordic Biochar Network 2024 · Webinar', title: 'How do you prepare for AI in biochar production?', href: 'https://www.linkedin.com/events/webinar-howdoyouprepareforaiinb7252739089534246913/?showRequesters=false&viewAsMember=false&audienceDemographics=false&showShareByPost=false&sTrk=%27%27&sV=%27%27&sAtp=%27%27&invite=false&message=false&skipRedirect=true' },
+  { venue: 'Platform Cooperativism Consortium 2024', title: 'Open Agriculture AI and Data', href: 'https://platform.coop/blog/open-agriculture-ai-and-data/' },
   { venue: 'Platform Cooperativism Consortium 2026', title: 'Who Runs the Machines? Cooperatives, Data, and Automation', href: 'https://platform.coop/events/solidarity-ai/concurrent-session-5-who-runs-the-machines/' }
 ]
