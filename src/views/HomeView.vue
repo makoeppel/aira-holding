@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     // Home page — section order follows the Canva wireframe:
-    // Hero → What we do → Our services → Sensor Cloud → Projects →
+    // Hero → What we do → Our services → AIRA One → Projects →
     // How we work → Partners & networks → Contact
     import { defineAsyncComponent } from 'vue'
     import SectionHeader from '@/components/common/SectionHeader.vue'
@@ -71,10 +71,10 @@
                 size="large"
                 variant="outlined"
                 class="text-none"
-                :to="{ name: 'sensorCloud' }"
+                :to="{ name: 'airaOne' }"
                 prepend-icon="mdi-cloud-outline"
               >
-                Sensor Cloud
+                AIRA One
               </v-btn>
             </div>
           </v-col>
@@ -185,17 +185,17 @@
       </v-col>
     </v-row>
 
-    <!-- SENSOR CLOUD BAND -->
+    <!-- AIRA ONE BAND -->
     <v-row class="aira-section--tight">
       <v-col cols="12">
         <div class="aira-card aira-card--accent sc-band">
           <div class="flex-grow-1">
-            <span class="aira-card-index">Product // Sensor Cloud</span>
+            <span class="aira-card-index">Product // AIRA One</span>
             <h3 class="text-h5 font-weight-bold mb-2">
               Monitor, forecast and explain your plant in one platform
             </h3>
             <p class="text-body-2 aira-muted mb-0">
-              Sensor Cloud connects technical facilities, shows live dashboards and emission forecasts with uncertainty,
+              AIRA One connects technical facilities, shows live dashboards and emission forecasts with uncertainty,
               and lets your team explore setpoints in a what-if simulator before anything changes on the machine.
             </p>
             <DemoLogin class="mt-4" />
@@ -205,9 +205,9 @@
               color="primary"
               variant="flat"
               class="text-none"
-              :to="{ name: 'sensorCloud' }"
+              :to="{ name: 'airaOne' }"
             >
-              Discover Sensor Cloud
+              Discover AIRA One
             </v-btn>
             <v-btn
               variant="outlined"
@@ -249,7 +249,7 @@
               />
               <p class="text-body-2 aira-muted">
                 Together with PYREG GmbH we reduce NOx emissions in biochar plants and optimize biochar properties with machine learning.
-                The work was presented at NeurIPS 2024 and is now available as Sensor Cloud.
+                The work was presented at NeurIPS 2024 and is now available as AIRA One.
               </p>
               <div class="d-flex flex-wrap ga-2">
                 <v-btn

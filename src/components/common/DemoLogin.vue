@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    // Public credentials for the Sensor Cloud demo instance
+    // Public credentials for the AIRA One demo instance
     import { links } from '@/content/site'
 </script>
 

@@ -39,8 +39,12 @@ const router = createRouter({
 		},
 		{
 			path: '/sensor-cloud',
-			name: 'sensorCloud',
-			component: () => import('@/views/SensorCloudView.vue')
+			redirect: { name: 'airaOne' }
+		},
+		{
+			path: '/aira-one',
+			name: 'airaOne',
+			component: () => import('@/views/AiraOneView.vue')
 		},
 		{
 			path: '/imprint',

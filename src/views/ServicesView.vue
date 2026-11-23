@@ -106,9 +106,9 @@
               color="primary"
               variant="flat"
               class="text-none"
-              :to="{ name: 'sensorCloud' }"
+              :to="{ name: 'airaOne' }"
             >
-              Discover Sensor Cloud
+              Discover AIRA One
             </v-btn>
             <v-btn
               variant="outlined"
@@ -152,7 +152,7 @@
         <SectionHeader
           num="05"
           tag="SaaS products"
-          title="Sensor Cloud, layer by layer"
+          title="AIRA One, layer by layer"
           subtitle="Our software grows with you, from onboarding and monitoring to assistance and, eventually, closed-loop control. Every layer builds on the one before."
         />
         <v-row class="aira-g">

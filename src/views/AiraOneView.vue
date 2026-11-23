@@ -5,7 +5,7 @@
     import { productLayers, links } from '@/content/site'
 
     // ---------------------------------------------------------------
-    // Sensor Cloud product page
+    // AIRA One product page
     // Structure follows a classic product landing page:
     // hero -> highlight -> capabilities -> workflow -> values ->
     // deployment -> platform stack -> call to action
@@ -89,13 +89,13 @@
     const deployments = [
         {
             tag: 'MANAGED',
-            title: 'Sensor Cloud',
+            title: 'AIRA One Cloud',
             text: 'Hosted and operated by AIRA. Connect your edge device and get dashboards, forecasts and the what-if portal without running any infrastructure yourself.',
             points: ['Fast onboarding', 'Updates and model retraining included', 'Customer portal with roles']
         },
         {
             tag: 'SELF-HOSTED',
-            title: 'Sensor Platform On-Premise',
+            title: 'AIRA One On-Premise',
             text: 'The same platform as a Kubernetes/Helm deployment in your own data centre or private cloud, for full data sovereignty.',
             points: ['Runs in your network', 'Single Helm chart', 'Support and model updates by AIRA']
         }
@@ -152,7 +152,7 @@
         class="pr-md-8"
       >
         <div class="aira-tag mb-4">
-          AIRA Sensor Cloud
+          AIRA One
         </div>
         <h1 class="aira-hero-title mb-5">
           From sensor data to
@@ -358,7 +358,7 @@
             Product layers
           </h2>
           <p class="text-body-1 text-medium-emphasis">
-            Sensor Cloud grows with your plant, from onboarding and the Insight Cockpit to an assistance system and, eventually, closed-loop control.
+            AIRA One grows with your plant, from onboarding and the Insight Cockpit to an assistance system and, eventually, closed-loop control.
           </p>
         </div>
         <div class="layer-stack">
@@ -563,7 +563,7 @@
             Ready to connect your plant?
           </h3>
           <p class="text-body-1 text-medium-emphasis mb-6 mx-auto cta-text">
-            Sensor Cloud grew out of EmissionTech, our research on reducing NOx emissions in biochar pyrolysis plants with machine learning,
+            AIRA One grew out of EmissionTech, our research on reducing NOx emissions in biochar pyrolysis plants with machine learning,
             presented at NeurIPS 2024 (Tackling Climate Change with Machine Learning).
             We start every engagement with a feasibility study to check where AI creates real value for your process.
           </p>

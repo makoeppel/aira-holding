@@ -163,9 +163,9 @@
 			variant: "text"
 		},
 		{
-			text: "buttons.sensorCloud",
-			key: "sensorCloud",
-			to: { name: "sensorCloud" },
+			text: "buttons.airaOne",
+			key: "airaOne",
+			to: { name: "airaOne" },
 			icon: "mdi-cloud-outline",
 			usage: ["navigation", "footer"],
 			variant: "text"

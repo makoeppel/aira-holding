@@ -6,7 +6,7 @@ export default {
 		contact: "Kontaktier uns",
 		becomeMember: "Mitglied werden",
 		support: "Unterstützen",
-		sensorCloud: "Sensor Cloud",
+		airaOne: "AIRA One",
 		aboutNav: "Über uns",
 		servicesNav: "Leistungen",
 		projectsNav: "Projekte",

@@ -103,14 +103,14 @@ export const services = [
     id: 'software',
     num: '03',
     title: 'Software Development',
-    short: 'Custom analytics software and our SaaS platform Sensor Cloud.',
+    short: 'Custom analytics software and our SaaS platform AIRA One.',
     icon: 'mdi-code-braces',
-    text: 'We build software that keeps working after the project ends, from custom analytics tools to production platforms with dashboards, forecasts and decision support. Our own SaaS platform, Sensor Cloud, bundles this for technical facilities.',
+    text: 'We build software that keeps working after the project ends, from custom analytics tools to production platforms with dashboards, forecasts and decision support. Our own SaaS platform, AIRA One, bundles this for technical facilities.',
     points: [
       'Edge-device integration to bring facilities online',
       'Data pipelines, dashboards and forecasting models',
       'Custom analytics, e.g. site-suitability analysis',
-      'Sensor Cloud: managed or self-hosted SaaS'
+      'AIRA One: managed or self-hosted SaaS'
     ],
     references: 'Projects include site-suitability analysis and analytics software for industry and insurance clients.'
   }
@@ -125,7 +125,7 @@ export const serviceLadder = [
   { step: 'Automate', text: 'Facility control based on optimized forecasts', color: 'green' }
 ]
 
-// ---------------- SaaS product layers (Sensor Cloud) ----------------
+// ---------------- SaaS product layers (AIRA One) ----------------
 export const productLayers = [
   {
     layer: 'Base layer',
@@ -214,9 +214,9 @@ export const projects: Project[] = [
     status: 'active',
     partners: 'with PYREG GmbH',
     short: 'Reducing NOx emissions in biochar plants and optimizing biochar properties with machine learning.',
-    text: 'Research and development project with PYREG GmbH. Plant data are cleaned and modelled in reproducible Kedro pipelines whose behaviour is fully configured in YAML, so a new plant is added by configuration instead of new code. The results were presented at NeurIPS 2024 and are now productised as Sensor Cloud.',
+    text: 'Research and development project with PYREG GmbH. Plant data are cleaned and modelled in reproducible Kedro pipelines whose behaviour is fully configured in YAML, so a new plant is added by configuration instead of new code. The results were presented at NeurIPS 2024 and are now productised as AIRA One.',
     tags: ['Pyrolysis', 'NOx', 'Kedro', 'Forecasting'],
-    link: { label: 'Explore Sensor Cloud', to: 'sensorCloud' }
+    link: { label: 'Explore AIRA One', to: 'airaOne' }
   },
   {
     id: 'effcheck',
@@ -305,7 +305,7 @@ export const timeline = [
   {
     year: '2026',
     title: 'From research to product',
-    text: 'Sensor Cloud goes live as a demo, the platform that turns EmissionTech into a product for technical facilities.'
+    text: 'AIRA One goes live as a demo, the platform that turns EmissionTech into a product for technical facilities.'
   }
 ]
 

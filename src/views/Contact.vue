@@ -14,7 +14,7 @@
       tag="Contact"
       title="Let's talk about"
       highlight="your plant."
-      subtitle="Questions about a project, a feasibility study or Sensor Cloud? Send us a message, or subscribe to our newsletter to follow our work."
+      subtitle="Questions about a project, a feasibility study or AIRA One? Send us a message, or subscribe to our newsletter to follow our work."
     >
       <v-btn
         variant="outlined"
@@ -34,7 +34,7 @@
         rel="noopener"
         append-icon="mdi-open-in-new"
       >
-        Sensor Cloud demo
+        AIRA One demo
       </v-btn>
       <DemoLogin class="align-self-center" />
     </PageHero>
