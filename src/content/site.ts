@@ -82,7 +82,7 @@ export const services = [
       'Clear recommendation: where AI makes sense, and where it does not',
       'A structured dataset as a deliverable of its own'
     ],
-    references: 'Feasibility studies with PYREG and ARTi on pyrolysis plants, covering emissions, biochar properties and energy flows, not only NOx.'
+    references: 'Feasibility studies with PYREG and ARTi on pyrolysis plants, covering emissions and biochar properties, not only NOx.'
   },
   {
     id: 'consulting',
@@ -121,8 +121,8 @@ export const serviceLadder = [
   { step: 'Connect', text: 'Install edge devices to bring facilities online', color: 'blue' },
   { step: 'Analyze', text: 'Feasibility study: analytics, patterns, correlations', color: 'blue' },
   { step: 'Monitor & Forecast', text: 'Dashboard with forecasts', color: 'purple' },
-  { step: 'Optimize', text: 'Optimized forecasts for one target dimension', color: 'purple' },
-  { step: 'Automate', text: 'Facility control based on optimized forecasts', color: 'green' }
+  { step: 'Optimize', text: 'Optimized forecasts for one to multi target dimension(s)', color: 'purple' },
+  { step: 'Control', text: 'Control based on optimized forecasts', color: 'green' }
 ]
 
 // ---------------- SaaS product layers (AIRA One) ----------------
@@ -131,7 +131,7 @@ export const productLayers = [
     layer: 'Base layer',
     name: 'Connect → Config',
     audience: 'AIRA, OEM service technicians, integrators',
-    text: 'Onboarding and admin tool. The platform scales by configuration: data sources, sensors, target variables, operating limits and optimization parameters per plant.',
+    text: 'Onboarding: data sources, sensors, target variables, operating limits and optimization parameters per plant.',
     status: 'active' as Status,
     icon: 'mdi-connection'
   },
@@ -147,7 +147,7 @@ export const productLayers = [
     layer: 'Insight Cockpit',
     name: 'Forecast',
     audience: 'Plant operators, OEM service, technical decision makers',
-    text: 'Multi-horizon forecasts of emissions and key sensors with uncertainty bands.',
+    text: 'Multi-horizon forecasts and key sensors with uncertainty bands.',
     status: 'active' as Status,
     icon: 'mdi-chart-bell-curve-cumulative'
   },
@@ -300,7 +300,7 @@ export const timeline = [
   {
     year: '2025',
     title: 'Networks and the AI-COOP idea',
-    text: 'Founding member of the PyroNet network, member of Ecoliance RLP, and our Biochar Today article on an AI-optimized biochar industry. "KI-Ära" becomes the German word of the year.'
+    text: 'Founding member of the PyroNet network, member of Ecoliance RLP, and our Biochar Today article on an AI-optimized biochar industry. "KI-Ära" becomes the German word of the year wich translates to "AI-era" -> AIRA.'
   },
   {
     year: '2026',
@@ -342,18 +342,20 @@ export const networks = [
   { name: 'Ecoliance RLP', role: 'Member', url: 'https://ecoliance-rlp.de/' },
   { name: 'PyroNet (ZIM network)', role: 'Founding member', url: 'https://agt-akademie.de/netzwerke/pyronet-netzwerk/' },
   { name: 'EffCheck RLP', role: 'Consultant', url: 'https://effcheck.rlp.de/' },
-  { name: 'Platform Cooperativism Consortium', role: 'Open Agriculture AI & Data', url: 'https://platform.coop/' }
+  { name: 'Platform Cooperativism Consortium', role: 'Platform Cooperativism Consortium · Solidarity AI', url: 'https://platform.coop/' }
 ]
 
 // ---------------- Team extras ----------------
 export const teamRoles: Record<string, string> = {
-  'Tobias Schweitzer': 'CEO & Managing Director · Strategy',
-  'Dr. Marius Snella Köppel': 'CTO & Managing Director · Development',
-  'Marvin Schneider': 'CFO · Finance'
+  'Tobias Schweitzer': 'Founder, Managing Director & CEO',
+  'Dr. Marius Snella Köppel': 'Founder, Managing Director & CTO',
+  'Marvin Schneider': 'Co-Founder & CFO'
 }
 
 export const advisors = [
-  { name: 'Felipe Valdez', role: 'Strategic Advisor' }
+  { name: 'Felipe Valdez', role: 'Strategic Advisor',
+    socials: [ {plattformName: "LinkedIn", icon: "mdi-linkedin", href: "https://www.linkedin.com/in/felipeavaldez/"} ]
+  }
 ]
 
 // ---------------- Research & publications ----------------

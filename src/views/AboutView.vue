@@ -333,6 +333,20 @@
               <div class="text-caption team-role">
                 {{ a.role }}
               </div>
+                <div class="mt-1">
+                  <v-btn
+                    v-for="s in a.socials"
+                    :key="s.href"
+                    :icon="s.icon"
+                    :href="s.href"
+                    target="_blank"
+                    rel="noopener"
+                    variant="plain"
+                    density="compact"
+                    size="small"
+                    :aria-label="`${s.plattformName} profile of ${a.name}`"
+                  />
+                </div>
             </div>
           </div>
         </div>

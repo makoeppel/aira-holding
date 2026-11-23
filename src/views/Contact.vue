@@ -14,7 +14,7 @@
       tag="Contact"
       title="Let's talk about"
       highlight="your plant."
-      subtitle="Questions about a project, a feasibility study or AIRA One? Send us a message, or subscribe to our newsletter to follow our work."
+      subtitle="Questions about a project, a feasibility study or AIRA One? Send us a message."
     >
       <v-btn
         variant="outlined"

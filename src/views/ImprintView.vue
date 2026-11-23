@@ -31,7 +31,7 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <p>Marius Köppel (Geschäftsführer)</p>
+              <p>Dr. Marius Snella Köppel (Geschäftsführer)</p>
             </v-col>
             <v-col cols="12">
               <p>Tobias Schweitzer (Geschäftsführer)</p>

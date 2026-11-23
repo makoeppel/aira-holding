@@ -248,7 +248,7 @@
                 class="mb-3"
               />
               <p class="text-body-2 aira-muted">
-                Together with PYREG GmbH we reduce NOx emissions in biochar plants and optimize biochar properties with machine learning.
+                Together with PYREG GmbH and ARTi we reduce NOx emissions in biochar plants and optimize biochar properties with machine learning.
                 The work was presented at NeurIPS 2024 and is now available as AIRA One.
               </p>
               <div class="d-flex flex-wrap ga-2">

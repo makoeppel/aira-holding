@@ -1,7 +1,7 @@
 <script lang="ts" setup>
     withDefaults(defineProps<{ title?: string, subtitle?: string }>(), {
         title: "Let's work together",
-        subtitle: 'Tell us about your facility or project, or subscribe to our newsletter to follow our work.'
+        subtitle: 'Tell us about your facility or project.'
     })
 </script>
 
@@ -52,7 +52,7 @@
               name="consent"
               required
             >
-            <span>I agree that my email address is used to answer my message and to send the newsletter.</span>
+            <span>I agree that my email address is used to answer my message.</span>
           </label>
 
           <p class="privacy-text">

@@ -56,7 +56,7 @@
         { label: 'Connect', desc: 'Edge device on the plant', phase: 'blue' },
         { label: 'Ingest', desc: 'Time-series store, cleaned & labelled', phase: 'blue' },
         { label: 'Visualize', desc: 'Live dashboards per machine', phase: 'purple' },
-        { label: 'Forecast', desc: 'Emission forecasts with P10/P90 band', phase: 'purple' },
+        { label: 'Forecast', desc: 'Forecasts with P10/P90 band', phase: 'purple' },
         { label: 'Simulate', desc: 'What-if setpoint exploration', phase: 'purple' },
         { label: 'Propose', desc: 'Reviewed setpoint proposals', phase: 'green' },
         { label: 'Adapt', desc: 'Operator acts; new data closes the loop', phase: 'green' }
@@ -81,8 +81,8 @@
         },
         {
             title: 'REGENERATIVE',
-            tagline: 'Fewer emissions, better products.',
-            text: 'Built for biochar, pyrolysis and biorefinery processes: lower NOx and CO, steadier operation and product properties tuned to their application.'
+            tagline: 'Accelerate planetary regeneration.',
+            text: 'Built for biochar, pyrolysis and biorefinery processes: steadier operation and product properties tuned to their application.'
         }
     ]
 
@@ -159,7 +159,7 @@
           <span class="aira-gradient-text">better plant decisions.</span>
         </h1>
         <p class="text-body-1 text-md-h6 text-medium-emphasis mb-8">
-          An end-to-end platform that connects technical facilities, turns their process data into live dashboards and emission forecasts,
+          An end-to-end platform that connects technical facilities, turns their process data into live dashboards and forecasts,
           and lets your team explore setpoints safely before changing anything on the machine.
           Available as a managed cloud service or self-hosted.
         </p>
@@ -206,7 +206,7 @@
       >
         <div class="aira-card hero-visual">
           <div class="hero-visual-head">
-            <span class="live-dot" /> NOx · plant line 1
+            <span class="live-dot" /> Sensor X · plant line 1
             <span class="ms-auto text-medium-emphasis">now → +30 min</span>
           </div>
           <motion.svg
