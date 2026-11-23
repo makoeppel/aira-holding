@@ -343,7 +343,7 @@ export const networks = [
   { name: 'Ecoliance RLP', role: 'Member', url: 'https://ecoliance-rlp.de/' },
   { name: 'PyroNet (ZIM network)', role: 'Founding member', url: 'https://agt-akademie.de/netzwerke/pyronet-netzwerk/' },
   { name: 'EffCheck RLP', role: 'Consultant', url: 'https://effcheck.rlp.de/' },
-  { name: 'Platform Cooperativism Consortium', role: 'Platform Cooperativism Consortium · Solidarity AI', url: 'https://platform.coop/' }
+  { name: 'Platform Cooperativism Consortium', role: 'Solidarity AI', url: 'https://platform.coop/' }
 ]
 
 // ---------------- Team extras ----------------
