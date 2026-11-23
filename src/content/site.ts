@@ -15,7 +15,7 @@ export const statusLabel: Record<Status, string> = {
 }
 
 export const links = {
-  demo: 'https://dev.aira-holding.de',
+  demo: 'https://one.aira-holding.de',
   demoUser: 'demo',
   demoPassword: 'demo',
   paper: 'https://arxiv.org/abs/2412.07881',

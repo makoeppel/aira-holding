@@ -156,7 +156,7 @@
         </div>
         <h1 class="aira-hero-title mb-5">
           From sensor data to
-          <span class="aira-gradient-text">better plant decisions.</span>
+          <span class="aira-gradient-text">better decisions.</span>
         </h1>
         <p class="text-body-1 text-md-h6 text-medium-emphasis mb-8">
           An end-to-end platform that connects technical facilities, turns their process data into live dashboards and forecasts,
@@ -206,7 +206,7 @@
       >
         <div class="aira-card hero-visual">
           <div class="hero-visual-head">
-            <span class="live-dot" /> Sensor X · plant line 1
+            <span class="live-dot" /> Sensor X
             <span class="ms-auto text-medium-emphasis">now → +30 min</span>
           </div>
           <motion.svg

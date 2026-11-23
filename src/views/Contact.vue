@@ -13,7 +13,7 @@
     <PageHero
       tag="Contact"
       title="Let's talk about"
-      highlight="your plant."
+      highlight="your sensors."
       subtitle="Questions about a project, a feasibility study or AIRA One? Send us a message."
     >
       <v-btn
