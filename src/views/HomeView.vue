@@ -41,6 +41,14 @@
               height="180px"
               class="mb-4 justify-center"
             />
+            <div
+              class="d-flex justify-center ga-3 mb-6"
+              aria-hidden="true"
+            >
+              <span class="nb-triangle" />
+              <span class="nb-triangle nb-triangle--sand" />
+              <span class="nb-triangle nb-triangle--slate" />
+            </div>
             <h1 class="aira-hero-title mb-4">
               AI for complex <span class="aira-gradient-text">industrial decisions.</span>
             </h1>
@@ -50,7 +58,7 @@
             </p>
             <div class="d-flex flex-wrap justify-center ga-3 mb-10">
               <v-btn
-                color="#4f9cff"
+                color="primary"
                 size="large"
                 variant="flat"
                 class="text-none"
@@ -73,7 +81,7 @@
 
         <v-row
           justify="center"
-          class="aira-g"
+          class="aira-g nb-rotate"
         >
           <v-col
             v-for="(p, i) in principles"
@@ -86,7 +94,7 @@
               <div class="aira-icon-box mb-4">
                 <v-icon
                   :icon="p.icon"
-                  color="#4f9cff"
+                  color="primary"
                 />
               </div>
               <span class="aira-card-index">0{{ i + 1 }} // {{ p.title }}</span>
@@ -144,7 +152,7 @@
           title="Three ways we work with you"
           subtitle="From the first question to software in production: domain-specific, explainable ML-based process optimization, including data strategy, modelling and implementation."
         />
-        <v-row class="aira-g">
+        <v-row class="aira-g nb-rotate">
           <v-col
             v-for="s in services"
             :key="s.id"
@@ -159,7 +167,7 @@
               <div class="aira-icon-box mb-5">
                 <v-icon
                   :icon="s.icon"
-                  color="#4f9cff"
+                  color="primary"
                 />
               </div>
               <span class="aira-card-index">{{ s.num }} // Service</span>
@@ -192,7 +200,7 @@
           </div>
           <div class="d-flex flex-wrap ga-3 flex-shrink-0">
             <v-btn
-              color="#4f9cff"
+              color="primary"
               variant="flat"
               class="text-none"
               :to="{ name: 'sensorCloud' }"
@@ -245,7 +253,7 @@
                 <v-btn
                   size="small"
                   variant="tonal"
-                  color="#4f9cff"
+                  color="primary"
                   class="text-none"
                   :href="links.paper"
                   target="_blank"
@@ -346,7 +354,7 @@
             :to="{ name: 'about' }"
             variant="text"
             size="small"
-            color="#4f9cff"
+            color="primary"
           >
             All partners →
           </v-chip>
@@ -362,6 +370,9 @@
 </template>
 
 <style scoped>
+.nb-triangle { border-left-width: 22px; border-right-width: 22px; border-bottom-width: 38px; }
+.nb-triangle--sand { border-bottom-color: var(--nb-sand); }
+.nb-triangle--slate { border-bottom-color: var(--nb-slate); }
 .hero-row { min-height: calc(100vh - var(--v-layout-top)); padding: 48px 0; }
 
 .sc-band {

@@ -72,7 +72,7 @@
                   :key="t"
                   size="x-small"
                   variant="tonal"
-                  color="#4f9cff"
+                  color="primary"
                 >
                   {{ t }}
                 </v-chip>
@@ -84,7 +84,7 @@
                 <v-btn
                   v-if="p.link.to"
                   variant="text"
-                  color="#4f9cff"
+                  color="primary"
                   class="text-none px-0"
                   :to="{ name: p.link.to }"
                 >
@@ -93,7 +93,7 @@
                 <v-btn
                   v-else
                   variant="text"
-                  color="#4f9cff"
+                  color="primary"
                   class="text-none px-0"
                   :href="p.link.href"
                   target="_blank"
@@ -142,7 +142,7 @@
               </p>
               <v-btn
                 variant="text"
-                color="#4f9cff"
+                color="primary"
                 class="text-none px-0"
                 :to="{ name: 'blogPost', params: { slug: 'ai-optimized-biochar-industry' } }"
               >
@@ -272,6 +272,6 @@
 
 <style scoped>
 .upcoming-card { border-style: dashed; }
-.talk-link { color: #4f9cff; text-decoration: none; font-weight: 600; }
+.talk-link { color: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: var(--nb-coral); text-decoration-thickness: 2px; }
 .talk-link:hover { text-decoration: underline; }
 </style>

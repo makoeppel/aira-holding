@@ -26,7 +26,7 @@
       subtitle="AIRA brings together computer science, physics, economics and communication. We research applications of AI and turn the most promising results into products and spin-offs."
     >
       <v-btn
-        color="#4f9cff"
+        color="primary"
         variant="flat"
         size="large"
         class="text-none"
@@ -78,7 +78,7 @@
     <!-- WHY AIRA -->
     <v-row class="aira-section--tight">
       <v-col cols="12">
-        <div class="aira-card">
+        <div class="aira-card nb-fill nb-sand">
           <span class="aira-card-index">Why “AIRA”?</span>
           <h3 class="text-h5 font-weight-bold mb-5">
             Artificial Intelligence, Research and Analytics, and a bit more
@@ -118,7 +118,7 @@
           title="Fair, ecological and regenerative AI"
           subtitle="The problem we start from: AI is often over-engineered, and data are rarely used in a circular way. Our vision is to research applications of AI and spin off promising results as products, guided by three values."
         />
-        <v-row class="aira-g mb-8">
+        <v-row class="aira-g nb-rotate mb-8">
           <v-col
             v-for="(p, i) in principles"
             :key="p.title"
@@ -130,7 +130,7 @@
               <div class="aira-icon-box mb-4">
                 <v-icon
                   :icon="p.icon"
-                  color="#4f9cff"
+                  color="primary"
                 />
               </div>
               <span class="aira-card-index">0{{ i + 1 }} // {{ p.title }}</span>
@@ -180,7 +180,7 @@
         <h3 class="text-h5 font-weight-bold mb-5">
           What makes us different
         </h3>
-        <v-row class="aira-g">
+        <v-row class="aira-g nb-rotate">
           <v-col
             v-for="d in differentiators"
             :key="d.title"
@@ -321,7 +321,7 @@
           >
             <v-avatar
               size="48"
-              color="#4f9cff"
+              color="primary"
               class="text-white font-weight-bold"
             >
               {{ initials(a.name) }}
@@ -350,43 +350,77 @@
 .timeline::before {
   content: '';
   position: absolute;
-  left: 118px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  background: linear-gradient(180deg, #4f9cff 0%, #8b5cf6 50%, #85BD58 100%);
-  opacity: 0.45;
+  left: 129px;
+  top: 8px;
+  bottom: 8px;
+  border-left: 3px solid var(--nb-ink);
 }
 .timeline-item {
   display: grid;
-  grid-template-columns: 100px 36px 1fr;
+  grid-template-columns: 110px 40px 1fr;
   align-items: start;
-  padding: 14px 0;
+  padding: 12px 0;
 }
-.timeline-year { font-family: monospace; font-weight: 700; color: #4f9cff; text-align: right; padding-top: 2px; }
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 18px;
+  text-align: right;
+  padding-top: 0;
+}
 .timeline-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: rgb(var(--v-theme-background));
-  border: 3px solid #4f9cff;
-  margin: 4px auto 0;
+  width: 20px; height: 20px;
+  background: var(--nb-coral);
+  border: 3px solid var(--nb-ink);
+  box-shadow: 3px 3px 0 var(--nb-ink);
+  margin: 2px auto 0;
   position: relative; z-index: 1;
+  transform: rotate(45deg);
 }
-.timeline-body { max-width: 720px; }
+.timeline-item:nth-child(3n+2) .timeline-dot { background: var(--nb-sand); }
+.timeline-item:nth-child(3n) .timeline-dot { background: var(--nb-slate); }
+.timeline-body {
+  max-width: 760px;
+  background: var(--nb-card);
+  border: 3px solid var(--nb-ink);
+  box-shadow: 5px 5px 0 var(--nb-ink);
+  padding: 16px 20px;
+}
 
 @media (max-width: 599px) {
-  .timeline::before { left: 7px; }
-  .timeline-item { grid-template-columns: 16px 1fr; column-gap: 14px; }
-  .timeline-year { grid-column: 2; text-align: left; }
-  .timeline-dot { grid-column: 1; grid-row: 1; margin: 4px 0 0; }
+  .timeline::before { left: 9px; }
+  .timeline-item { grid-template-columns: 22px 1fr; column-gap: 14px; }
+  .timeline-year { grid-column: 2; text-align: left; margin-bottom: 6px; }
+  .timeline-dot { grid-column: 1; grid-row: 1; margin: 2px 0 0; }
   .timeline-body { grid-column: 2; }
 }
 
-.name-letter { font-family: monospace; font-weight: 800; font-size: 18px; letter-spacing: 2px; color: #4f9cff; }
+.name-letter {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 1px;
+  background: #1A1A1A;
+  color: #F2EADB;
+  padding: 2px 10px;
+}
 
 .partner-card { flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; padding: 18px 20px; }
-.partner-icon { opacity: 0.4; }
+.partner-icon { opacity: 0.6; }
 
-.team-role { color: #4f9cff; font-weight: 600; }
+.team-role {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  background: var(--nb-sand);
+  color: #1A1A1A;
+  border: 2px solid var(--nb-ink);
+  padding: 1px 6px;
+  margin-top: 4px;
+}
+
+.team-card .v-avatar { flex-shrink: 0; }
 
 .advisor-card { flex-direction: row; align-items: center; gap: 14px; height: auto; padding: 16px 20px; }
 </style>

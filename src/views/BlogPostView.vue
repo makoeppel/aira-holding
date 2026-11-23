@@ -119,7 +119,7 @@
           Post not found
         </h1>
         <v-btn
-          color="#4f9cff"
+          color="primary"
           variant="flat"
           class="text-none"
           :to="{ name: 'blog' }"
@@ -138,5 +138,5 @@
 </template>
 
 <style scoped>
-.orig-link { color: #4f9cff; }
+.orig-link { color: inherit; text-decoration-color: var(--nb-coral); text-decoration-thickness: 2px; }
 </style>

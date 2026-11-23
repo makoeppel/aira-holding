@@ -65,7 +65,7 @@
                   :key="t"
                   size="x-small"
                   variant="tonal"
-                  color="#4f9cff"
+                  color="primary"
                 >
                   {{ t }}
                 </v-chip>
@@ -133,7 +133,7 @@
         </v-row>
         <v-btn
           variant="text"
-          color="#4f9cff"
+          color="primary"
           class="text-none px-0 mt-4"
           :to="{ name: 'projects', query: { p: 'research' } }"
         >

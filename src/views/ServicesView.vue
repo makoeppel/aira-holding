@@ -81,7 +81,7 @@
           <div class="aira-icon-box mb-4">
             <v-icon
               :icon="s.icon"
-              color="#4f9cff"
+              color="primary"
             />
           </div>
           <span class="aira-card-index">What you get</span>
@@ -102,7 +102,7 @@
             class="d-flex flex-wrap ga-3 mt-5"
           >
             <v-btn
-              color="#4f9cff"
+              color="primary"
               variant="flat"
               class="text-none"
               :to="{ name: 'sensorCloud' }"
@@ -164,7 +164,7 @@
                 <div class="aira-icon-box">
                   <v-icon
                     :icon="l.icon"
-                    color="#4f9cff"
+                    color="primary"
                   />
                 </div>
                 <StatusChip :status="l.status" />

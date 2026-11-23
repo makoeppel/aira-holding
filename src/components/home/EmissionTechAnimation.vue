@@ -30,6 +30,7 @@
     while-in-view="visible"
     :in-view-options="{ once: true }"
     :style="image"
+    class="et-anim"
   >
     <!-- Input -->
     <motion.rect
@@ -240,6 +241,16 @@
 </template>
 
 <style scoped>
-.anim-title { fill: rgba(var(--v-theme-on-surface), 0.85); }
-.anim-sub { fill: rgba(var(--v-theme-on-surface), 0.6); }
+.anim-title { fill: rgb(var(--v-theme-on-surface)); font-family: var(--font-display); }
+.anim-sub { fill: rgba(var(--v-theme-on-surface), 0.7); font-family: var(--font-body); }
+.et-anim :deep([stroke="#9ca0a5"]), .et-anim :deep([stroke="#8d9399"]) { stroke: var(--nb-ink); }
+.et-anim :deep(rect[fill="#85BD58"]) { fill: var(--nb-sand); }
+.et-anim :deep(circle[fill="#83BE55"]) { fill: var(--nb-slate); }
+.et-anim :deep([fill="#d95a5a"]) { fill: var(--nb-coral); }
+.et-anim :deep(circle[fill="#d95a5a"]) { fill: var(--nb-orange); }
+.et-anim :deep([stroke="#4f7cff"]) { stroke: var(--nb-orange); }
+.et-anim :deep(path[fill="#4f7cff"]) { fill: var(--nb-orange); }
+.et-anim :deep(text[fill="white"]) { fill: #1A1A1A; font-family: var(--font-body); font-weight: 700; }
+.et-anim :deep(rect[fill="#000"]) { fill: #1A1A1A; }
+.et-anim :deep(rect[fill="#000"] + text) { fill: #F2EADB; }
 </style>

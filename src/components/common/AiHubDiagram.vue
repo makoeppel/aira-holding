@@ -22,7 +22,7 @@
       >
         <path
           d="M0 0L10 5L0 10Z"
-          fill="#4f9cff"
+          class="arrow-data"
         />
       </marker>
       <marker
@@ -36,7 +36,7 @@
       >
         <path
           d="M0 0L10 5L0 10Z"
-          fill="#85BD58"
+          class="arrow-opt"
         />
       </marker>
     </defs>
@@ -71,8 +71,7 @@
         :y1="y - 8"
         x2="300"
         :y2="150 - 14 + i * 8"
-        stroke="#4f9cff"
-        stroke-width="2.5"
+        class="flow-data"
         marker-end="url(#hubArrow)"
       />
       <line
@@ -80,9 +79,7 @@
         :y1="150 + 14 + (i - 1) * 8"
         x2="178"
         :y2="y + 10"
-        stroke="#85BD58"
-        stroke-width="2.5"
-        stroke-dasharray="6 5"
+        class="flow-opt"
         marker-end="url(#hubArrowGreen)"
       />
     </g>
@@ -100,19 +97,19 @@
       x="400"
       y="132"
       text-anchor="middle"
-      class="node-title"
+      class="node-title on-fill"
     >Data Trustee</text>
     <text
       x="400"
       y="154"
       text-anchor="middle"
-      class="node-sub"
+      class="node-sub on-fill"
     >cooperative, owned &amp;</text>
     <text
       x="400"
       y="172"
       text-anchor="middle"
-      class="node-sub"
+      class="node-sub on-fill"
     >governed by members</text>
 
     <!-- AIRA -->
@@ -121,8 +118,7 @@
       y1="135"
       x2="585"
       y2="135"
-      stroke="#4f9cff"
-      stroke-width="2.5"
+      class="flow-data"
       marker-end="url(#hubArrow)"
     />
     <line
@@ -130,9 +126,7 @@
       y1="168"
       x2="500"
       y2="168"
-      stroke="#85BD58"
-      stroke-width="2.5"
-      stroke-dasharray="6 5"
+      class="flow-opt"
       marker-end="url(#hubArrowGreen)"
     />
     <rect
@@ -147,13 +141,13 @@
       x="665"
       y="145"
       text-anchor="middle"
-      class="node-title"
+      class="node-title on-fill"
     >AIRA</text>
     <text
       x="665"
       y="166"
       text-anchor="middle"
-      class="node-sub"
+      class="node-sub on-fill"
     >develops &amp; provides AI</text>
 
     <!-- legend -->
@@ -162,8 +156,7 @@
       y1="268"
       x2="360"
       y2="268"
-      stroke="#4f9cff"
-      stroke-width="2.5"
+      class="flow-data"
     />
     <text
       x="366"
@@ -175,9 +168,7 @@
       y1="268"
       x2="450"
       y2="268"
-      stroke="#85BD58"
-      stroke-width="2.5"
-      stroke-dasharray="6 5"
+      class="flow-opt"
     />
     <text
       x="456"
@@ -188,9 +179,14 @@
 </template>
 
 <style scoped>
-.node { fill: rgba(var(--v-theme-on-surface), 0.04); stroke: rgba(var(--v-theme-on-surface), 0.18); stroke-width: 1.5; }
-.node--trustee { fill: rgba(79, 156, 255, 0.10); stroke: #4f9cff; }
-.node--aira { fill: rgba(133, 189, 88, 0.12); stroke: #85BD58; }
-.node-title { fill: rgb(var(--v-theme-on-surface)); font-size: 17px; font-weight: 700; }
-.node-sub { fill: rgba(var(--v-theme-on-surface), 0.65); font-size: 13px; }
+.node { fill: var(--nb-card); stroke: var(--nb-ink); stroke-width: 3; }
+.node--trustee { fill: var(--nb-sand); }
+.node--aira { fill: var(--nb-coral); }
+.node-title { fill: rgb(var(--v-theme-on-surface)); font-size: 17px; font-weight: 700; font-family: var(--font-body); }
+.node-sub { fill: rgba(var(--v-theme-on-surface), 0.75); font-size: 13px; font-family: var(--font-body); }
+.on-fill { fill: #1A1A1A !important; }
+.flow-data { stroke: var(--nb-ink); stroke-width: 3; }
+.flow-opt { stroke: var(--nb-orange); stroke-width: 3; stroke-dasharray: 7 5; }
+.arrow-data { fill: var(--nb-ink); }
+.arrow-opt { fill: var(--nb-orange); }
 </style>

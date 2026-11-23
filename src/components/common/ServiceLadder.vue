@@ -30,30 +30,33 @@
 </template>
 
 <style scoped>
-.ladder-wrapper { overflow-x: auto; padding-bottom: 8px; }
+.ladder-wrapper { overflow-x: auto; padding: 4px 8px 12px 4px; }
 .ladder {
   display: grid;
-  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
   position: relative;
-  min-width: 720px;
+  min-width: 760px;
 }
 .ladder::before {
   content: '';
   position: absolute;
-  top: 22px; left: 10%; right: 10%; height: 2px;
-  background: linear-gradient(90deg, #4f9cff 0%, #8b5cf6 50%, #85BD58 100%);
-  opacity: 0.45;
+  top: 26px; left: 10%; right: 10%;
+  border-top: 3px dashed var(--nb-ink);
 }
 .ladder-step { text-align: center; padding: 0 10px; position: relative; }
 .ladder-circle {
-  width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 12px;
+  width: 54px; height: 54px; margin: 0 auto 14px;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; color: #fff; position: relative; z-index: 1;
+  font-family: var(--font-display); font-size: 20px;
+  color: var(--nb-black);
+  border: 3px solid var(--nb-ink);
+  box-shadow: 4px 4px 0 var(--nb-ink);
+  position: relative; z-index: 1;
 }
-.ladder-circle--blue { background: #4f9cff; }
-.ladder-circle--purple { background: #8b5cf6; }
-.ladder-circle--green { background: #6aa843; }
-.ladder-label { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.ladder-desc { font-size: 13px; opacity: 0.68; line-height: 1.35; margin: 0; }
-.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+.ladder-circle--blue { background: var(--nb-slate); }
+.ladder-circle--purple { background: var(--nb-coral); }
+.ladder-circle--green { background: var(--nb-sand); }
+.ladder-label { font-size: 16px; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+.ladder-desc { font-size: 14px; opacity: 0.78; line-height: 1.35; margin: 0; }
+.dot { display: inline-block; width: 12px; height: 12px; margin-right: 4px; border: 2px solid var(--nb-ink); vertical-align: -1px; }
 </style>

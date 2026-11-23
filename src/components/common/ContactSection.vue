@@ -17,6 +17,7 @@
       lg="6"
     >
       <div class="aira-card contact-card">
+        <span class="aira-tag mb-4 align-self-start">Contact</span>
         <h2 class="text-h5 font-weight-bold mb-1">
           {{ title }}
         </h2>
@@ -76,27 +77,33 @@
 </template>
 
 <style scoped>
-.contact-card { padding: 28px; }
-.label { display: block; font-size: 13px; margin: 14px 0 6px; opacity: 0.8; }
+.contact-card { padding: 32px; }
+.label { display: block; font-family: var(--font-mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 6px; }
 .input {
   width: 100%;
-  background: rgba(var(--v-theme-on-surface), 0.04);
-  border: 1px solid rgba(var(--v-theme-on-surface), 0.14);
-  border-radius: 10px;
+  background: var(--nb-bg);
+  border: 3px solid var(--nb-ink);
+  border-radius: 0;
   padding: 12px 14px;
   color: inherit;
   outline: none;
-  transition: 0.2s ease;
-  font-size: 14px;
+  font-size: 15px;
   font-family: inherit;
+  transition: box-shadow 0.12s ease;
 }
-.input:focus { border-color: #4f9cff; box-shadow: 0 0 0 2px rgba(79, 156, 255, 0.2); }
-.checkbox { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; opacity: 0.8; }
-.privacy-text { font-size: 12px; opacity: 0.6; margin-top: 8px; line-height: 1.4; }
-.privacy-text a { color: #4f9cff; }
+.input:focus { box-shadow: 4px 4px 0 var(--nb-coral); }
+.checkbox { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 14px; }
+.checkbox input { width: 18px; height: 18px; accent-color: #DA7C75; }
+.privacy-text { font-size: 12px; opacity: 0.7; margin-top: 8px; line-height: 1.45; }
+.privacy-text a { color: inherit; text-decoration-color: var(--nb-coral); text-decoration-thickness: 2px; }
 .button {
-  margin-top: 18px; width: 100%; padding: 12px; border: none; border-radius: 10px;
-  background: #4f9cff; color: white; font-weight: 600; cursor: pointer; transition: 0.2s ease;
+  margin-top: 20px; width: 100%; padding: 14px;
+  background: var(--nb-coral); color: #1A1A1A;
+  border: 3px solid var(--nb-ink); border-radius: 0;
+  box-shadow: 5px 5px 0 var(--nb-ink);
+  font-family: var(--font-display); font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px;
+  cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.button:hover { background: #3b82f6; transform: translateY(-1px); }
+.button:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--nb-ink); }
+.button:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--nb-ink); }
 </style>
