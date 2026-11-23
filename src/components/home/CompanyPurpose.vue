@@ -1,8 +1,8 @@
 <template>
-	<h3><u>{{ $t(title) }}</u></h3>
-	<p>
-		{{ $t(paragraph) }}
-	</p>
+  <h3><u>{{ $t(title) }}</u></h3>
+  <p>
+    {{ $t(paragraph) }}
+  </p>
 </template>
 <script setup lang="ts">
 

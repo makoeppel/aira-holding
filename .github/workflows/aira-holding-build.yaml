@@ -2,7 +2,7 @@ name: Build & Deploy (Vite/Vue)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ] # 1. Listen to both branches
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -17,6 +17,7 @@ jobs:
     env:
       OUTPUT_DIR: dist
       CI: "true"
+      TARGET_DIR: ${{ github.ref_name == 'main' && '/var/www/aira-holding' || '/var/www/aira-holding-dev' }}
 
     steps:
       - name: Checkout
@@ -34,19 +35,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Optional: sanity-check that dist isn't empty
       - name: List files
         run: |
           echo "Built files:"
           ls -la $OUTPUT_DIR
 
-      # Upload to your server (rsync over SSH)
       - name: Deploy via SSH (rsync)
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           REMOTE_HOST: aira-holding.de
           REMOTE_USER: deploy
-          TARGET: /var/www/aira-holding
+          TARGET: ${{ env.TARGET_DIR }}
           SOURCE: ${{ env.OUTPUT_DIR }}/
           ARGS: "-rltgoDz --delete"

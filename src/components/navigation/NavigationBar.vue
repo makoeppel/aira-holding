@@ -1,21 +1,80 @@
 <template>
-	<v-app-bar scroll-behavior="elevate" floating>
-		<home-button></home-button>
+  <v-app-bar
+    scroll-behavior="elevate"
+    floating
+  >
+    <home-button />
 
-		<v-btn v-for="navigationTarget in filteredNavigationTarget" v-bind:key="navigationTarget.key"
-			class="text-none mx-2 d-none d-md-inline-flex" :variant="navigationTarget.variant" :to="navigationTarget.to">
-			{{ $t(navigationTarget.text) }}
-		</v-btn>
+    <v-spacer class="d-md-none" />
 
-		<responsive-button v-for="responsiveNavigationTarget in responsiveNavigationTargets"
-			v-bind:key="responsiveNavigationTarget.key" :text="$t(responsiveNavigationTarget.text)"
-			:icon="responsiveNavigationTarget.icon" :color="responsiveNavigationTarget.color"
-			:variant="responsiveNavigationTarget.variant" :to="responsiveNavigationTarget.to">
-		</responsive-button>
-	</v-app-bar>
+    <v-btn
+      v-for="navigationTarget in filteredNavigationTarget"
+      :key="navigationTarget.key"
+      class="text-none mx-1 d-none d-md-inline-flex"
+      :variant="navigationTarget.variant"
+      :to="navigationTarget.to"
+    >
+      {{ $t(navigationTarget.text) }}
+    </v-btn>
+
+    <v-btn
+      class="text-none ml-2 d-none d-md-inline-flex"
+      color="primary"
+      variant="flat"
+      :to="{ name: 'contact' }"
+    >
+      {{ $t('buttons.contact') }}
+    </v-btn>
+
+    <!-- Mobile menu -->
+    <v-menu
+      location="bottom end"
+      class="d-md-none"
+    >
+      <template #activator="{ props }">
+        <v-app-bar-nav-icon
+          v-bind="props"
+          class="d-md-none"
+          :aria-label="$t('buttons.menuNav')"
+        />
+      </template>
+      <v-list
+        min-width="220"
+        nav
+      >
+        <v-list-item
+          :to="{ name: 'home' }"
+          :title="$t('buttons.homeNav')"
+          prepend-icon="mdi-home-outline"
+        />
+        <v-list-item
+          v-for="navigationTarget in filteredNavigationTarget"
+          :key="navigationTarget.key"
+          :to="navigationTarget.to"
+          :title="$t(navigationTarget.text)"
+          :prepend-icon="navigationTarget.icon || undefined"
+        />
+        <v-list-item
+          :to="{ name: 'contact' }"
+          :title="$t('buttons.contact')"
+          prepend-icon="mdi-email-outline"
+        />
+      </v-list>
+    </v-menu>
+
+    <responsive-button
+      v-for="responsiveNavigationTarget in responsiveNavigationTargets"
+      :key="responsiveNavigationTarget.key"
+      :text="$t(responsiveNavigationTarget.text)"
+      :icon="responsiveNavigationTarget.icon"
+      :color="responsiveNavigationTarget.color"
+      :variant="responsiveNavigationTarget.variant"
+      :to="responsiveNavigationTarget.to"
+    />
+  </v-app-bar>
 </template>
 <script lang="ts" setup>
-	import { VAppBar, VBtn } from 'vuetify/lib/components/index.mjs';
+	import { VAppBar, VBtn, VSpacer, VMenu, VList, VListItem, VAppBarNavIcon } from 'vuetify/lib/components/index.mjs';
 	import { defineAsyncComponent } from 'vue';
 
 	const HomeButton = defineAsyncComponent(() => import("@/components/navigation/buttons/HomeButton.vue"))
@@ -29,7 +88,7 @@
 <script lang="ts">
 	export interface NavigationTarget {
 		text: string,
-		to: Object,
+		to: object,
 		key: string,
 		icon: string,
 		usage: string[],
@@ -72,6 +131,46 @@
 		},
 		*/
 		{
+			text: "buttons.aboutNav",
+			key: "about",
+			to: { name: "about" },
+			icon: "mdi-account-group-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.servicesNav",
+			key: "services",
+			to: { name: "services" },
+			icon: "mdi-briefcase-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.projectsNav",
+			key: "projects",
+			to: { name: "projects" },
+			icon: "mdi-flask-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.blogNav",
+			key: "blog",
+			to: { name: "blog" },
+			icon: "mdi-post-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.airaOne",
+			key: "airaOne",
+			to: { name: "airaOne" },
+			icon: "mdi-cloud-outline",
+			usage: ["navigation", "footer"],
+			variant: "text"
+		},
+		{
 			text: "buttons.imprint",
 			key: "imprint",
 			to: { name: "imprint" },
@@ -91,22 +190,6 @@
 			text: "buttons.contact",
 			key: "contact",
 			to: { name: "contact" },
-			icon: "",
-			usage: ["footer"],
-			variant: "text"
-		},
-		{
-			text: "buttons.ixon",
-			key: "ixon",
-			to: { name: "ixon" },
-			icon: "",
-			usage: ["footer"],
-			variant: "text"
-		},
-		{
-			text: "buttons.kedro",
-			key: "kedro",
-			to: { name: "kedro" },
 			icon: "",
 			usage: ["footer"],
 			variant: "text"

@@ -1,29 +1,33 @@
 <template>
-	<v-btn v-if="isSmallScreen && false"
-		:to="{ name: 'home'}"
-		class="text-none"
-		variant="text"
-		:active="false"
-		size="x-large"
-		:aria-label="$t('buttons.navigateToHome')">
-		<v-icon v-if="theme.current.value.dark">
-			<IconComponentDark></IconComponentDark>
-		</v-icon>
-		<v-icon v-else>
-			<IconComponent ></IconComponent>
-		</v-icon>
-	</v-btn>
-	<v-btn v-else
-		:to="{ name: 'home'}"
-		class="text-none"
-		variant="text"
-		:active="false"
-		size="x-large"
-		:aria-label="$t('buttons.home.text')">
-		<span>
-			{{ $t('buttons.home.text') }}
-		</span>
-	</v-btn>
+  <v-btn
+    v-if="isSmallScreen && false"
+    :to="{ name: 'home'}"
+    class="text-none"
+    variant="text"
+    :active="false"
+    size="x-large"
+    :aria-label="$t('buttons.navigateToHome')"
+  >
+    <v-icon v-if="theme.current.value.dark">
+      <IconComponentDark />
+    </v-icon>
+    <v-icon v-else>
+      <IconComponent />
+    </v-icon>
+  </v-btn>
+  <v-btn
+    v-else
+    :to="{ name: 'home'}"
+    class="text-none"
+    variant="text"
+    :active="false"
+    size="x-large"
+    :aria-label="$t('buttons.home.text')"
+  >
+    <span>
+      {{ $t('buttons.home.text') }}
+    </span>
+  </v-btn>
 </template>
 <script setup lang="ts">
 	import { VBtn, VIcon } from 'vuetify/lib/components/index.mjs';

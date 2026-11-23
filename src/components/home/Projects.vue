@@ -1,7 +1,10 @@
 <template>
-    <v-container fluid class="px-0">
-        <v-row justify="center">
-            <!--<v-col cols="12">
+  <v-container
+    fluid
+    class="px-0"
+  >
+    <v-row justify="center">
+      <!--<v-col cols="12">
                 <v-avatar size="x-large">
                     <v-img
                         :src="imgSrc"
@@ -9,14 +12,21 @@
                 </v-avatar>
             </v-col>
             -->
-            <v-col cols="12" class="py-0"><h3><u>{{ title }}</u></h3></v-col>
-        </v-row>
-        <v-row>
-            <v-col cols="12">
-                <p class="text-left">{{ $t(paragraph) }}</p>
-            </v-col>
-        </v-row>
-    </v-container>
+      <v-col
+        cols="12"
+        class="py-0"
+      >
+        <h3><u>{{ title }}</u></h3>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <p class="text-left">
+          {{ $t(paragraph) }}
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script setup lang="ts">
 

@@ -1,24 +1,27 @@
 <template>
-	<v-btn
-		variant="text">
-		{{ $t("buttons.settings")}}
-		<v-menu
-			activator="parent"
-			:close-on-content-click="false">
-			<v-list>
-				<v-list-item>
-					<v-switch
-						v-model="settings.dark"
-						true-icon="mdi-weather-night"
-						false-icon="mdi-white-balance-sunny"
-						inset
-						:ripple="false">
-						<template v-slot:label>
-							{{ themeName }} Theme
-						</template>
-					</v-switch>
-				</v-list-item>
-				<!--
+  <v-btn
+    variant="text"
+  >
+    {{ $t("buttons.settings") }}
+    <v-menu
+      activator="parent"
+      :close-on-content-click="false"
+    >
+      <v-list>
+        <v-list-item>
+          <v-switch
+            v-model="settings.dark"
+            true-icon="mdi-weather-night"
+            false-icon="mdi-white-balance-sunny"
+            inset
+            :ripple="false"
+          >
+            <template #label>
+              {{ themeName }} Theme
+            </template>
+          </v-switch>
+        </v-list-item>
+        <!--
 				<v-list-item>
 					<v-switch
 						v-model="settings.local"
@@ -32,9 +35,9 @@
 					</v-switch>
 				</v-list-item>
 				-->
-			</v-list>
-		</v-menu>
-	</v-btn>
+      </v-list>
+    </v-menu>
+  </v-btn>
 </template>
 <script setup lang="ts">
 	import { VBtn, VMenu, VList, VListItem, VSwitch } from 'vuetify/lib/components/index.mjs';

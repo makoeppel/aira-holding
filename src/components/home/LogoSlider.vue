@@ -2,7 +2,6 @@
   <div class="logo-section">
     <div class="logo-viewport">
       <div class="logo-track">
-
         <a
           v-for="logo in doubledLogos"
           :key="logo.name + Math.random()"
@@ -11,9 +10,11 @@
           rel="noopener noreferrer"
           class="logo-item"
         >
-          <img :src="logo.logo" :alt="logo.name" />
+          <img
+            :src="logo.logo"
+            :alt="logo.name"
+          >
         </a>
-
       </div>
     </div>
   </div>
@@ -60,13 +61,13 @@ const doubledLogos = [...logos, ...logos]
 /* 🌕 LIGHT SECTION WRAPPER */
 .logo-section {
   width: 100%;
-  background: #f6f7f9; /* light background */
-  border-radius: 16px;
-  padding: 40px 0;
-  margin: 40px 0;
-
-  /* subtle separation from dark page */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* neo-brutalist strip: logos stay on white so partner marks remain legible */
+  background: #FBF6EC;
+  border: 3px solid var(--nb-ink);
+  box-shadow: 6px 6px 0 var(--nb-ink);
+  border-radius: 0;
+  padding: 36px 0;
+  margin: 24px 0;
 }
 
 /* viewport */
@@ -96,14 +97,16 @@ const doubledLogos = [...logos, ...logos]
   align-items: center;
   justify-content: center;
   padding: 10px 18px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border: 3px solid transparent;
+  transition: all 0.15s ease;
 }
 
 /* hover card effect */
 .logo-item:hover {
-  background: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
+  background: #DEC593;
+  border-color: #1A1A1A;
+  box-shadow: 4px 4px 0 #1A1A1A;
+  transform: translate(-2px, -2px);
 }
 
 /* logos */
