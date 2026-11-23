@@ -5,15 +5,62 @@
   >
     <home-button />
 
+    <v-spacer class="d-md-none" />
+
     <v-btn
       v-for="navigationTarget in filteredNavigationTarget"
       :key="navigationTarget.key"
-      class="text-none mx-2 d-none d-md-inline-flex"
+      class="text-none mx-1 d-none d-md-inline-flex"
       :variant="navigationTarget.variant"
       :to="navigationTarget.to"
     >
       {{ $t(navigationTarget.text) }}
     </v-btn>
+
+    <v-btn
+      class="text-none ml-2 d-none d-md-inline-flex"
+      color="#4f9cff"
+      variant="flat"
+      :to="{ name: 'contact' }"
+    >
+      {{ $t('buttons.contact') }}
+    </v-btn>
+
+    <!-- Mobile menu -->
+    <v-menu
+      location="bottom end"
+      class="d-md-none"
+    >
+      <template #activator="{ props }">
+        <v-app-bar-nav-icon
+          v-bind="props"
+          class="d-md-none"
+          :aria-label="$t('buttons.menuNav')"
+        />
+      </template>
+      <v-list
+        min-width="220"
+        nav
+      >
+        <v-list-item
+          :to="{ name: 'home' }"
+          :title="$t('buttons.homeNav')"
+          prepend-icon="mdi-home-outline"
+        />
+        <v-list-item
+          v-for="navigationTarget in filteredNavigationTarget"
+          :key="navigationTarget.key"
+          :to="navigationTarget.to"
+          :title="$t(navigationTarget.text)"
+          :prepend-icon="navigationTarget.icon || undefined"
+        />
+        <v-list-item
+          :to="{ name: 'contact' }"
+          :title="$t('buttons.contact')"
+          prepend-icon="mdi-email-outline"
+        />
+      </v-list>
+    </v-menu>
 
     <responsive-button
       v-for="responsiveNavigationTarget in responsiveNavigationTargets"
@@ -27,7 +74,7 @@
   </v-app-bar>
 </template>
 <script lang="ts" setup>
-	import { VAppBar, VBtn } from 'vuetify/lib/components/index.mjs';
+	import { VAppBar, VBtn, VSpacer, VMenu, VList, VListItem, VAppBarNavIcon } from 'vuetify/lib/components/index.mjs';
 	import { defineAsyncComponent } from 'vue';
 
 	const HomeButton = defineAsyncComponent(() => import("@/components/navigation/buttons/HomeButton.vue"))
@@ -83,6 +130,38 @@
 			variant: "text"
 		},
 		*/
+		{
+			text: "buttons.aboutNav",
+			key: "about",
+			to: { name: "about" },
+			icon: "mdi-account-group-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.servicesNav",
+			key: "services",
+			to: { name: "services" },
+			icon: "mdi-briefcase-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.projectsNav",
+			key: "projects",
+			to: { name: "projects" },
+			icon: "mdi-flask-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
+		{
+			text: "buttons.blogNav",
+			key: "blog",
+			to: { name: "blog" },
+			icon: "mdi-post-outline",
+			usage: ["navigation"],
+			variant: "text"
+		},
 		{
 			text: "buttons.sensorCloud",
 			key: "sensorCloud",

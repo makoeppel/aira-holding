@@ -1,5 +1,7 @@
 <script lang="ts" setup>
     import { motion } from 'motion-v'
+    import StatusChip from '@/components/common/StatusChip.vue'
+    import { productLayers, links } from '@/content/site'
 
     // ---------------------------------------------------------------
     // Sensor Cloud product page
@@ -8,8 +10,8 @@
     // deployment -> platform stack -> call to action
     // ---------------------------------------------------------------
 
-    const paperUrl = 'https://arxiv.org/abs/2412.07881'
-    const demoUrl = 'https://dev.aira-holding.de'
+    const paperUrl = links.paper
+    const demoUrl = links.demo
 
     // Hash routing is used, so in-page anchors must scroll programmatically
     const scrollTo = (id: string) => {
@@ -347,11 +349,48 @@
       </v-col>
     </v-row>
 
-    <!-- WORKFLOW -->
+    <!-- PRODUCT LAYERS -->
     <v-row class="py-12">
       <v-col cols="12">
         <div class="section-head mb-8">
           <span class="section-num">02</span>
+          <h2 class="text-h4 font-weight-bold mb-2">
+            Product layers
+          </h2>
+          <p class="text-body-1 text-medium-emphasis">
+            Sensor Cloud grows with your plant, from onboarding and the Insight Cockpit to an assistance system and, eventually, closed-loop control.
+          </p>
+        </div>
+        <div class="layer-stack">
+          <div
+            v-for="l in productLayers"
+            :key="l.name"
+            :class="['layer-row', `layer-row--${l.status}`]"
+          >
+            <div class="sc-icon-wrap">
+              <v-icon
+                :icon="l.icon"
+                color="#4f9cff"
+              />
+            </div>
+            <div class="layer-name">
+              <span class="card-index mb-0">{{ l.layer }}</span>
+              <strong>{{ l.name }}</strong>
+            </div>
+            <div class="layer-text text-body-2 text-medium-emphasis">
+              {{ l.text }}
+            </div>
+            <StatusChip :status="l.status" />
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+
+    <!-- WORKFLOW -->
+    <v-row class="py-12">
+      <v-col cols="12">
+        <div class="section-head mb-8">
+          <span class="section-num">03</span>
           <h2 class="text-h4 font-weight-bold mb-2">
             Workflow
           </h2>
@@ -398,7 +437,7 @@
     <v-row class="py-12">
       <v-col cols="12">
         <div class="section-head mb-8">
-          <span class="section-num">03</span>
+          <span class="section-num">04</span>
           <h2 class="text-h4 font-weight-bold mb-2">
             Built on AIRA's principles
           </h2>
@@ -432,7 +471,7 @@
     <v-row class="py-12">
       <v-col cols="12">
         <div class="section-head mb-8">
-          <span class="section-num">04</span>
+          <span class="section-num">05</span>
           <h2 class="text-h4 font-weight-bold mb-2">
             Two ways to run it
           </h2>
@@ -479,7 +518,7 @@
     <v-row class="py-12">
       <v-col cols="12">
         <div class="section-head mb-8">
-          <span class="section-num">05</span>
+          <span class="section-num">06</span>
           <h2 class="text-h4 font-weight-bold mb-2">
             Platform stack
           </h2>
@@ -797,4 +836,28 @@
   background: linear-gradient(160deg, rgba(79, 156, 255, 0.08) 0%, rgba(var(--v-theme-on-surface), 0.02) 100%);
 }
 .cta-text { max-width: 720px; }
+/* Product layers */
+.layer-stack { display: flex; flex-direction: column; gap: 10px; }
+.layer-row {
+  display: grid;
+  grid-template-columns: 48px 220px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  border: 1px solid var(--sc-border);
+  border-radius: 12px;
+  background: var(--sc-surface);
+}
+.layer-row--planned { border-style: dashed; opacity: 0.85; }
+.layer-row--beta { border-color: rgba(79, 156, 255, 0.35); }
+.layer-name { display: flex; flex-direction: column; }
+.sc-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(79, 156, 255, 0.06); border: 1px solid rgba(79, 156, 255, 0.2);
+}
+@media (max-width: 959px) {
+  .layer-row { grid-template-columns: 44px 1fr; }
+  .layer-text { grid-column: 1 / -1; }
+}
 </style>
