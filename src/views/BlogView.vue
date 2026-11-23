@@ -75,7 +75,7 @@
           </v-col>
         </v-row>
 
-        <h3 class="text-h6 font-weight-bold mt-10 mb-4">
+        <!-- <h3 class="text-h6 font-weight-bold mt-10 mb-4">
           In preparation
         </h3>
         <v-row class="aira-g">
@@ -96,7 +96,7 @@
               </p>
             </div>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-col>
     </v-row>
 
