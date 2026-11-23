@@ -382,9 +382,10 @@ export const publications = [
 
 export const talks = [
   { venue: '7th Biochar School 2023 · Turin, Italy', title: 'AI applied to biochar production', href: 'https://www.ibe.cnr.it/wp-content/uploads/2023/09/biocharschool2023.pdf' },
-  { venue: 'German Biochar 2023 · Berlin', title: 'Workshop: Digitalisierung und KI trifft Pflanzenkohle' },
+  { venue: 'German Biochar 2023 · Berlin', title: 'Workshop: Digitalisierung und KI trifft Pflanzenkohle', href: 'https://german-biochar-forum.com/events/klimaschutz-kreislaufwirtschaft-energiewende-mit-pflanzenkohle/programm#' },
   { venue: 'US Biochar / NABC 2024 · Sacramento, USA', title: 'Revolutionizing Biochar Production: AI-Driven Innovation', href: 'https://biochar-us.org/usbinabc24-schweitzer-revolutionizing-biochar-production-ai-driven-innovation' },
   { venue: 'Minnesota Biochar Initiative · Webinar', title: 'AI in biochar production' },
   { venue: 'Nordic Biochar Network · Webinar', title: 'How do you prepare for AI in biochar production?' },
-  { venue: 'Platform Cooperativism Consortium', title: 'Open Agriculture AI and Data', href: 'https://platform.coop/people/tobias-schweitzer/' }
+  { venue: 'Platform Cooperativism Consortium 2025', title: 'Open Agriculture AI and Data', href: 'https://platform.coop/people/tobias-schweitzer/' },
+  { venue: 'Platform Cooperativism Consortium 2026', title: 'Who Runs the Machines? Cooperatives, Data, and Automation', href: 'https://platform.coop/events/solidarity-ai/concurrent-session-5-who-runs-the-machines/' }
 ]
