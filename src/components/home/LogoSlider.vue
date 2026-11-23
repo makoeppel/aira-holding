@@ -50,7 +50,7 @@ const logos = [
   {
     name: 'ARTi',
     url: 'https://www.arti.com/',
-    logo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.TvnL30n8tPvJX2ksKzd8ewHaD-%3Fpid%3DApi&f=1&ipt=8cd2b188f501bd31d2bd4c8239af8ab7236523384e625c88c6e3c2bee81454d0&ipo=images'
+    logo: '/src/assets/ARTi-logo.png'
   }
 ]
 
