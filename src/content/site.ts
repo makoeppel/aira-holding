@@ -23,7 +23,8 @@ export const links = {
   poster: 'https://figshare.com/articles/poster/Reducing_NOx_Emissions_in_Pyrolysis_Machines_for_Biochar_Production_A_machine_learning_approach/23772729/1',
   biocharToday: 'https://biochartoday.com/blog/transitioning-the-biochar-industry-from-hardware-to-an-ai-optimized-future/',
   linkedin: 'https://www.linkedin.com/company/aira-holding-gmbh/',
-  effcheck: 'https://effcheck.rlp.de/ueber-den-effcheck/effcheck-varianten/industrie-40'
+  effcheck: 'https://effcheck.rlp.de/ueber-den-effcheck/effcheck-varianten/industrie-40',
+  biochar26: 'https://figshare.com/articles/poster/Building_Al_Together_How_the_Biochar_Industry_Uses_Shared_Data_to_Create_New_Revenue_Streams/35093716?file=71793457'
 }
 
 // ---------------- Principles / values ----------------
@@ -377,7 +378,13 @@ export const publications = [
     venue: 'Biochar Today · 2025',
     title: 'Transitioning the biochar industry from hardware to an AI-optimized future',
     href: links.biocharToday
-  }
+  },
+  {
+    type: 'Poster',
+    venue: 'Biochar Summit 2026 · Wien',
+    title: 'Building Al Together: How the Biochar Industry Uses Shared Data to Create New Revenue Streams',
+    href: links.biochar26
+  },
 ]
 
 export const talks = [
