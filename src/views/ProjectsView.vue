@@ -161,7 +161,7 @@
     </v-row>
 
     <!-- UPCOMING -->
-    <v-row class="aira-section--tight">
+    <!-- <v-row class="aira-section--tight">
       <v-col cols="12">
         <h3 class="text-h5 font-weight-bold mb-5">
           Coming up
@@ -190,7 +190,7 @@
           </v-col>
         </v-row>
       </v-col>
-    </v-row>
+    </v-row> -->
 
     <hr class="aira-divider mt-12">
 
