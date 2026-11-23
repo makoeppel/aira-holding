@@ -13,6 +13,11 @@ const router = createRouter({
 			component: () => import('@/views/HomeView.vue')
 		},
 		{
+			path: '/sensor-cloud',
+			name: 'sensorCloud',
+			component: () => import('@/views/SensorCloudView.vue')
+		},
+		{
 			path: '/imprint',
 			name: 'imprint',
 			// route level code-splitting

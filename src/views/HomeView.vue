@@ -211,6 +211,15 @@
             <p class="text-body-1 opacity-70">
               EmissionTech is AIRA's first product line. It is built for emissions-relevant process data and helps technical teams move from disconnected data to structured decision intelligence.
             </p>
+            <v-btn
+              class="text-none mt-4"
+              color="#4f9cff"
+              variant="flat"
+              :to="{ name: 'sensorCloud' }"
+              append-icon="mdi-arrow-right"
+            >
+              Explore Sensor Cloud
+            </v-btn>
           </v-col>
         </v-row>
 

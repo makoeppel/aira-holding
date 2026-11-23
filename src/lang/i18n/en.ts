@@ -6,6 +6,7 @@ export default {
 		contact: "Get in touch",
 		becomeMember: "Mitglied werden",
 		support: "Unterstützen",
+		sensorCloud: "Sensor Cloud",
 		imprint: "Imprint",
 		gep: "Gender Equality Plan",
 		ixon: "Ixon Import Configuration",

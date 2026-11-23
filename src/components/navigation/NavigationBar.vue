@@ -84,6 +84,14 @@
 		},
 		*/
 		{
+			text: "buttons.sensorCloud",
+			key: "sensorCloud",
+			to: { name: "sensorCloud" },
+			icon: "mdi-cloud-outline",
+			usage: ["navigation", "footer"],
+			variant: "text"
+		},
+		{
 			text: "buttons.imprint",
 			key: "imprint",
 			to: { name: "imprint" },
