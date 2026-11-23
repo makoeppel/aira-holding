@@ -1,6 +1,7 @@
 <script lang="ts" setup>
     import PageHero from '@/components/common/PageHero.vue'
     import ContactSection from '@/components/common/ContactSection.vue'
+    import DemoLogin from '@/components/common/DemoLogin.vue'
     import { links } from '@/content/site'
 </script>
 
@@ -35,6 +36,7 @@
       >
         Sensor Cloud demo
       </v-btn>
+      <DemoLogin class="align-self-center" />
     </PageHero>
     <ContactSection class="pt-0" />
   </v-container>

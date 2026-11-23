@@ -8,6 +8,7 @@
     import StatusChip from '@/components/common/StatusChip.vue'
     import ServiceLadder from '@/components/common/ServiceLadder.vue'
     import ContactSection from '@/components/common/ContactSection.vue'
+    import DemoLogin from '@/components/common/DemoLogin.vue'
     import { services, productLayers, links } from '@/content/site'
 
     const route = useRoute()
@@ -120,6 +121,10 @@
               Live demo
             </v-btn>
           </div>
+          <DemoLogin
+            v-if="s.id === 'software'"
+            class="mt-5"
+          />
         </div>
       </v-col>
     </v-row>

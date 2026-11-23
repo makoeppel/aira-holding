@@ -16,6 +16,8 @@ export const statusLabel: Record<Status, string> = {
 
 export const links = {
   demo: 'https://dev.aira-holding.de',
+  demoUser: 'demo',
+  demoPassword: 'demo',
   paper: 'https://arxiv.org/abs/2412.07881',
   paperNeurips: 'https://www.climatechange.ai/papers/neurips2024/65',
   poster: 'https://figshare.com/articles/poster/Reducing_NOx_Emissions_in_Pyrolysis_Machines_for_Biochar_Production_A_machine_learning_approach/23772729/1',

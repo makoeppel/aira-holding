@@ -15,8 +15,6 @@ export default {
 		menuNav: "Menü",
 		imprint: "Impressum",
 		gep: "Gender Equality Plan",
-		ixon: "Ixon Import Configuration",
-		kedro: "Kedro Pipeline",
 		dataSecurity: "Datenschutz",
 		settings: "Einstellungen",
 		navigateToHome: "Zurück zur Startseite",
@@ -29,8 +27,6 @@ export default {
 		imprint: "Impressum",
 		contact: "Kontaktier uns",
 		gep: "Gender Equality Plan",
-		ixon: "Ixon Import Configuration",
-		kedro: "Kedro Pipeline",
 	},
 	home: {
 		companyPurpose: {
@@ -54,7 +50,7 @@ export default {
 			title: "Team",
 			members: {
 				tobias: "Tobias Schweitzer has extensive experience in both traditional and agile IT project management across various organizations. He possesses strong leadership skills and strategic expertise, which he effectively applies to key areas within the organization. During a six-month scholarship with Project Together's Farm Food Climate Challenge (08/21–01/22), he specialized in emissions reduction in agriculture, building valuable connections in decarbonization. As the Transformation Project Manager at Lebensraum Foundation, he expanded his network and developed a keen sense of future climate solutions. His ongoing master's studies in corporate communication complement his role as CEO at AIRA Holding GmbH.",
-				marius: "M.Sc. Marius Köppel is currently pursuing a Ph.D. in Physics at Johannes Gutenberg University Mainz. His extensive network and interest in technology allows him to continuously apply and expand his skills. He is an associated member of the Data Mining Group in Mainz where he did research in Algorithmic Fairness. Furthermore, he has contributed to several scientific publications in the field of Machine Learning. As a technology expert and CTO, he brings all the necessary skills to uphold high-quality standards at AIRA Holding GmbH.",
+				marius: "Dr. Marius Köppel ist Postdoc in Teilchenphysik an der ETH Zürich und arbeitet an experimenteller Teilchenphysik, Echtzeit-Datenerfassung und maschinellem Lernen. An der ETH ist er für den Scintillating-Fibre-Detektor des Mu3e-Experiments verantwortlich und entwickelt ML-basierte Anomalieerkennung und Trigger-Pipelines für das CMS-Experiment. Seine Forschung konzentriert sich auf Lösungen, die die enormen Datenmengen heutiger wissenschaftlicher Experimente bewältigen. Promoviert hat er in Physik an der Johannes Gutenberg-Universität Mainz, wo er das Datenerfassungssystem des Mu3e-Experiments entwickelt hat. Mu3e sucht nach dem seltenen Myonzerfall μ⁺ → e⁺e⁻e⁺, ein wichtiger Schritt zum Verständnis der fundamentalen Naturgesetze. Darüber hinaus interessiert er sich für die Weiterentwicklung von Detektortechnologien und arbeitet an Myon-Spin-Spektroskopie mit Silizium-Pixeldetektoren (MuSiP) am Paul Scherrer Institut. Jenseits der Physik beschäftigt er sich mit algorithmischer Fairness, wo Ethik auf Technologie trifft: Algorithmen, die nicht nur effizient, sondern auch gerecht sind. Er ist assoziiertes Mitglied des TOPML-Projekts, das das Zusammenspiel nicht-funktionaler Eigenschaften im maschinellen Lernen untersucht.",
 				marvin: "Marvin Schneider completed his training as a tax specialist in 2014 and continued to develop professionally as a business economist. After working in a tax and audit firm, he transitioned to the internal accounting department of a medium-sized corporation. Besides his role as an accountant, he was responsible for the financial integration of newly acquired companies. As the Finance Integration Coordinator, he established and digitized the entire finance department in collaboration with the CFO. Following an internal move to project management in IT & Organization, he now leads IT and financial projects with a primary focus on digitalization and M&A."
 			}
 		},

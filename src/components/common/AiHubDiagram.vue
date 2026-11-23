@@ -9,6 +9,7 @@
     role="img"
     aria-label="AI Hub: operators share data with a cooperative data trustee, AIRA provides the AI, optimized data flow back to the operators"
     class="ai-hub"
+    style="max-width: 760px; display: block; margin: 0 auto;"
   >
     <defs>
       <marker

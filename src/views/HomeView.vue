@@ -7,6 +7,7 @@
     import StatusChip from '@/components/common/StatusChip.vue'
     import ServiceLadder from '@/components/common/ServiceLadder.vue'
     import ContactSection from '@/components/common/ContactSection.vue'
+    import DemoLogin from '@/components/common/DemoLogin.vue'
     import { principles, problems, services, projects, networks, links } from '@/content/site'
 
     const HeaderLogoComponent = defineAsyncComponent(() => import('@/components/home/HeaderLogo.vue'))
@@ -197,6 +198,7 @@
               Sensor Cloud connects technical facilities, shows live dashboards and emission forecasts with uncertainty,
               and lets your team explore setpoints in a what-if simulator before anything changes on the machine.
             </p>
+            <DemoLogin class="mt-4" />
           </div>
           <div class="d-flex flex-wrap ga-3 flex-shrink-0">
             <v-btn

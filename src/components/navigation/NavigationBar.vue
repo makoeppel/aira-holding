@@ -19,7 +19,7 @@
 
     <v-btn
       class="text-none ml-2 d-none d-md-inline-flex"
-      color="#4f9cff"
+      color="primary"
       variant="flat"
       :to="{ name: 'contact' }"
     >
@@ -190,22 +190,6 @@
 			text: "buttons.contact",
 			key: "contact",
 			to: { name: "contact" },
-			icon: "",
-			usage: ["footer"],
-			variant: "text"
-		},
-		{
-			text: "buttons.ixon",
-			key: "ixon",
-			to: { name: "ixon" },
-			icon: "",
-			usage: ["footer"],
-			variant: "text"
-		},
-		{
-			text: "buttons.kedro",
-			key: "kedro",
-			to: { name: "kedro" },
 			icon: "",
 			usage: ["footer"],
 			variant: "text"

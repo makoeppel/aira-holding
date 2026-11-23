@@ -109,7 +109,7 @@
                 {
                     plattformName: "LinkedIn",
                     icon: "mdi-linkedin",
-                    href: "https://www.linkedin.com/in/marius-k%C3%B6ppel-b0a2b915b/"
+                    href: "https://www.linkedin.com/in/marius-snella-k%C3%B6ppel-b0a2b915b/"
                 }
             ]
         },

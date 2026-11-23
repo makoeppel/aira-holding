@@ -1,6 +1,7 @@
 <script lang="ts" setup>
     import { motion } from 'motion-v'
     import StatusChip from '@/components/common/StatusChip.vue'
+    import DemoLogin from '@/components/common/DemoLogin.vue'
     import { productLayers, links } from '@/content/site'
 
     // ---------------------------------------------------------------
@@ -195,6 +196,7 @@
             Read the research
           </v-btn>
         </div>
+        <DemoLogin class="mt-6" />
       </v-col>
 
       <v-col
@@ -286,6 +288,7 @@
               Promising settings become proposals that a reviewer approves or rejects, with every step recorded in an audit trail.
               The machine stays under the operator's control.
             </p>
+            <DemoLogin class="mt-4" />
           </div>
           <v-btn
             color="primary"
@@ -597,6 +600,7 @@
               Read the paper
             </v-btn>
           </div>
+          <DemoLogin class="mt-6" />
         </div>
       </v-col>
     </v-row>
