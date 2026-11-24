@@ -1,8 +1,21 @@
 <script lang="ts" setup>
-    withDefaults(defineProps<{ title?: string, subtitle?: string }>(), {
-        title: "Let's work together",
-        subtitle: 'Tell us about your facility or project.'
-    })
+import { onMounted } from 'vue'
+
+withDefaults(defineProps<{ title?: string, subtitle?: string }>(), {
+  title: "Let's work together",
+  subtitle: 'Tell us about your facility or project.'
+})
+
+onMounted(() => {
+  const scriptSrc = 'https://contact.aira-holding.de/form-token.js'
+  // Avoid injecting duplicate scripts if the component re-mounts
+  if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+    const s = document.createElement('script')
+    s.src = scriptSrc
+    s.defer = true
+    document.body.appendChild(s)
+  }
+})
 </script>
 
 <template>
@@ -26,9 +39,27 @@
         </p>
 
         <form
-          action="https://formspree.io/f/mwvjozjw"
+          action="https://contact.aira-holding.de/f/contact"
           method="POST"
         >
+          <!-- Honeypot field for hugo-contact spam protection -->
+          <input
+            type="text"
+            name="_gotcha"
+            style="display: none"
+            tabindex="-1"
+            autocomplete="off"
+          >
+
+          <label class="label">Name</label>
+          <input
+            class="input"
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required
+          >
+
           <label class="label">Email</label>
           <input
             class="input"
@@ -44,6 +75,7 @@
             name="message"
             placeholder="Your message..."
             rows="4"
+            required
           />
 
           <label class="checkbox">
@@ -56,12 +88,7 @@
           </label>
 
           <p class="privacy-text">
-            I have read the <a href="#/imprint">privacy policy</a>. The email address is collected via
-            <a
-              href="https://formspree.io"
-              target="_blank"
-              rel="noopener"
-            >Formspree</a>. You can revoke your consent at any time.
+            I have read the <a href="#/imprint">privacy policy</a>. Your message will be processed directly via our own mail server to respond to your inquiry. You can revoke your consent at any time.
           </p>
 
           <button
