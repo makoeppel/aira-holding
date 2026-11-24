@@ -1,21 +1,55 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { reactive, ref } from 'vue'
 
 withDefaults(defineProps<{ title?: string, subtitle?: string }>(), {
   title: "Let's work together",
   subtitle: 'Tell us about your facility or project.'
 })
 
-onMounted(() => {
-  const scriptSrc = 'https://contact.aira-holding.de/form-token.js'
-  // Avoid injecting duplicate scripts if the component re-mounts
-  if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-    const s = document.createElement('script')
-    s.src = scriptSrc
-    s.defer = true
-    document.body.appendChild(s)
-  }
+const contactEndpoint = import.meta.env.VITE_CONTACT_URL || 'https://contact.aira-holding.de/f/contact'
+
+const form = reactive({
+  name: '',
+  email: '',
+  message: '',
+  _gotcha: ''
 })
+
+const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
+const feedback = ref('')
+
+async function handleSubmit() {
+  status.value = 'sending'
+  feedback.value = ''
+
+  try {
+    const formData = new FormData()
+    formData.append('name', form.name)
+    formData.append('email', form.email)
+    formData.append('message', form.message)
+    formData.append('_gotcha', form._gotcha)
+
+    const response = await fetch(contactEndpoint, {
+      method: 'POST',
+      body: formData
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.detail || 'Something went wrong.')
+    }
+
+    status.value = 'success'
+    feedback.value = data.message || 'Thank you! Your message has been sent.'
+    form.name = ''
+    form.email = ''
+    form.message = ''
+  } catch (err: any) {
+    status.value = 'error'
+    feedback.value = err.message || 'Failed to send message.'
+  }
+}
 </script>
 
 <template>
@@ -38,12 +72,9 @@ onMounted(() => {
           {{ subtitle }}
         </p>
 
-        <form
-          action="https://contact.aira-holding.de/f/contact"
-          method="POST"
-        >
-          <!-- Honeypot field for hugo-contact spam protection -->
+        <form @submit.prevent="handleSubmit">
           <input
+            v-model="form._gotcha"
             type="text"
             name="_gotcha"
             style="display: none"
@@ -53,6 +84,7 @@ onMounted(() => {
 
           <label class="label">Name</label>
           <input
+            v-model="form.name"
             class="input"
             type="text"
             name="name"
@@ -62,6 +94,7 @@ onMounted(() => {
 
           <label class="label">Email</label>
           <input
+            v-model="form.email"
             class="input"
             type="email"
             name="email"
@@ -71,6 +104,7 @@ onMounted(() => {
 
           <label class="label">Message</label>
           <textarea
+            v-model="form.message"
             class="input"
             name="message"
             placeholder="Your message..."
@@ -94,9 +128,18 @@ onMounted(() => {
           <button
             class="button"
             type="submit"
+            :disabled="status === 'sending'"
           >
-            Send message
+            {{ status === 'sending' ? 'Sending...' : 'Send message' }}
           </button>
+
+          <p
+            v-if="feedback"
+            class="status-msg"
+            :class="status"
+          >
+            {{ feedback }}
+          </p>
         </form>
       </div>
     </v-col>
@@ -131,6 +174,10 @@ onMounted(() => {
   font-family: var(--font-display); font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px;
   cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.button:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--nb-ink); }
-.button:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--nb-ink); }
+.button:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--nb-ink); }
+.button:active:not(:disabled) { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--nb-ink); }
+.button:disabled { opacity: 0.6; cursor: not-allowed; }
+.status-msg { margin-top: 14px; font-size: 14px; font-weight: 600; }
+.status-msg.success { color: #2e7d32; }
+.status-msg.error { color: #c62828; }
 </style>
