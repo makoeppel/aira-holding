@@ -21,6 +21,9 @@
 </template>
 
 <script setup>
+
+import ARTiLogo from '@/assets/ARTi-logo.png?component'
+
 const logos = [
   {
     name: 'PYREG',
@@ -50,7 +53,7 @@ const logos = [
   {
     name: 'ARTi',
     url: 'https://www.arti.com/',
-    logo: '/src/assets/ARTi-logo.png'
+    logo: ARTiLogo
   }
 ]
 

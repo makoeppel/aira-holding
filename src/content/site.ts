@@ -336,7 +336,7 @@ export const partners = [
   { name: 'University of Camerino', url: 'https://www.unicam.it/' },
   { name: 'Paul Scherrer Institute', url: 'https://www.psi.ch/' },
   { name: 'INL – International Iberian Nanotechnology Laboratory', url: 'https://inl.int/' },
-  { name: 'Ministry for Climate Protection, Environment, Energy and Mobility RLP', url: 'https://mkuem.rlp.de/' }
+  { name: 'Ministry for Economy, Tourism, Energy and Climate RLP', url: 'https://mwtek.rlp.de/' }
 ]
 
 export const networks = [
